@@ -1,1 +1,6 @@
 %h2 Editing #{@slide.board.name} slide ##{@slide.position}
+
+= simple_form_for [ :admin, @board, @slide ] do |f|
+  = f.input :layout_name, collection: LayoutManager.instance.layout_names
+
+  = f.button :submit, "Set Layout"

@@ -3,9 +3,9 @@ class Slide < ActiveRecord::Base
 
   validates :board, :position, presence: true
 
-  attr_accessible :position
-
   after_initialize :ensure_positioned
+
+  attr_accessible :position, :layout_name
 
 protected
 
