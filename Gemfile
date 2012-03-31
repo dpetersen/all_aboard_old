@@ -4,6 +4,8 @@ gem 'rails', '3.2.3'
 
 gem 'sqlite3'
 gem 'jquery-rails'
+gem 'inherited_resources'
+gem 'haml'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -20,6 +22,8 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'pry'
+  gem 'spin'
+  gem 'kicker'
 end
 
 # To use debugger
