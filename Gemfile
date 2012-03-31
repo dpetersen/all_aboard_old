@@ -6,6 +6,7 @@ gem 'sqlite3'
 gem 'jquery-rails'
 gem 'inherited_resources'
 gem 'haml'
+gem 'simple_form'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -24,7 +25,7 @@ group :development, :test do
   gem 'pry'
   gem 'spin'
   gem 'kicker'
+  gem 'shoulda-matchers'
+  gem 'thin'
+  gem 'factory_girl_rails'
 end
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'

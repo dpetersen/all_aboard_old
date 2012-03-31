@@ -1,5 +1,5 @@
 %ul
   - @boards.each do |board|
-    %li= board.name
+    %li= link_to board.name, admin_board_path(board)
 
 = link_to "New Board", new_admin_board_path

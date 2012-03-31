@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe Board do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should have_many(:slides) }
+  it { should validate_presence_of(:name) }
 end

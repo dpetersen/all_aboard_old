@@ -1,5 +1,4 @@
-= form_for [ :admin, @board ] do |f|
-  = f.label :name
-  = f.text_field :name
+= simple_form_for [ :admin, @board ] do |f|
+  = f.input :name
 
-  = f.submit "Save"
+  = f.button :submit

@@ -8,7 +8,8 @@
     = csrf_meta_tags
 
   %body
-    - if flash[:notice]
-      %h2= flash[:notice]
+    .container
+      - if flash[:notice]
+        %h2= flash[:notice]
 
-    = yield
+      = yield
