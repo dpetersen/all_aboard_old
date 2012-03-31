@@ -8,8 +8,7 @@ end
 
 describe "Basic Source" do
   subject { page }
-  before { SourceManager.register_source(BasicSourceSpecTestSource) }
-  after { SourceManager.flush_sources }
+  before { SourceManager.instance.register_source(BasicSourceSpecTestSource) }
 
   context "visiting the homepage" do
     before { visit "/" }
