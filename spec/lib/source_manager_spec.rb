@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-class SourceManagerSpecTestSource
+class SourceManagerSpecTestSource < Source
 end
 
 describe SourceManager do

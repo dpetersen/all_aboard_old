@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-class BasicSourceSpecTestSource
+class BasicSourceSpecTestSource < Source
   def render
     "Sample content from source"
   end
