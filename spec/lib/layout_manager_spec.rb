@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe LayoutManager do
-  subject { LayoutManager.new }
+  let(:layout_manager) { LayoutManager.new }
 
   describe ".instance" do
     it "returns an instance of itself" do
@@ -15,18 +15,16 @@ describe LayoutManager do
   end
 
   describe "#register_layout" do
-    before do
-      subject.register_layout(Layouts::Quarters)
-    end
+    before { layout_manager.register_layout(Layouts::Quarters) }
+    subject { layout_manager.layouts }
 
-    its(:layouts) { should == [ Layouts::Quarters ] }
+    it { should == [ Layouts::Quarters ] }
   end
 
   describe "#layout_names" do
-    before do
-      subject.register_layout(Layouts::Quarters)
-    end
+    before { layout_manager.register_layout(Layouts::Quarters) }
+    subject { layout_manager.layout_names }
 
-    its(:layout_names) { should == [ "Quarters" ] }
+    it { should == [ "Quarters" ] }
   end
 end
