@@ -14,6 +14,16 @@ describe LayoutManager do
     end
   end
 
+  describe "#layout_for_name" do
+    subject { layout_manager.layout_for_name("Quarters") }
+
+    context "with a layout registered" do
+      before { layout_manager.register_layout(Layouts::Quarters) }
+
+      it { should == Layouts::Quarters }
+    end
+  end
+
   describe "#register_layout" do
     before { layout_manager.register_layout(Layouts::Quarters) }
     subject { layout_manager.layouts }

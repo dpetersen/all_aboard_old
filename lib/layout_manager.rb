@@ -7,6 +7,10 @@ class LayoutManager
     layout_classes << layout_class
   end
 
+  def layout_for_name(layout_name)
+    layout_classes.find { |l| l.name == layout_name }
+  end
+
   def layouts
     layout_classes
   end

@@ -3,6 +3,10 @@ module Layouts
     def self.name
       "Quarters"
     end
+
+    def render
+      "Quarters Layout"
+    end
   end
 end
 

@@ -18,3 +18,16 @@ feature "Board List" do
     page.should have_content("A Test Board")
   end
 end
+
+feature "Viewing board" do
+  background do
+    @board = FactoryGirl.create(:board)
+    FactoryGirl.create(:slide, board: @board, layout_name: "Quarters")
+  end
+
+  scenario "viewing a board with slides with layouts" do
+    visit board_path(@board)
+
+    page.should have_content("Quarters Layout")
+  end
+end
