@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe BasicTestSource do
+  describe ".filesystem_name" do
+    subject { BasicTestSource.filesystem_name }
+    it { should == "basic_test_source" }
+  end
+
   describe ".name" do
     subject { BasicTestSource.name }
     it { should == "BasicTestSource" }

@@ -5,7 +5,7 @@ class Source
 
   def self.perspective(perspective_name)
     @perspectives ||= []
-    @perspectives << perspective_name
+    @perspectives << Perspective.new(self, perspective_name)
   end
 
   def self.perspectives
@@ -13,32 +13,17 @@ class Source
   end
 
   def self.perspective_names
-    perspectives
+    perspectives.map(&:name)
   end
 
   def render(perspective_name)
-    template_for_perspective(perspective_name).render.strip
+    perspective = perspective_for_name(perspective_name)
+    perspective.template.render.strip
   end
 
 protected
 
-  def template_for_perspective(perspective_name)
-    Tilt.new(perspective_template_path(perspective_name))
-  end
-
-  def perspective_template_path(perspective_name)
-    template_path = File.join(
-      SourceManager.instance.source_base_path,
-      self.class.filesystem_name,
-      perspective_template_filename(perspective_name)
-    )
-  end
-
-  def perspective_template_filename(perspective_name)
-    perspective_filesystem_name(perspective_name) + ".html.haml"
-  end
-
-  def perspective_filesystem_name(perspective_name)
-    perspective_name.gsub(" ", "").underscore
+  def perspective_for_name(perspective_name)
+    self.class.perspectives.detect { |p| p.name == perspective_name }
   end
 end
