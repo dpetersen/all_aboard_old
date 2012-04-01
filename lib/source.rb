@@ -1,8 +1,4 @@
 class Source
-  def self.name
-    self.to_s
-  end
-
   def self.perspective(perspective_name, &response)
     @perspectives ||= {}
     @perspectives[perspective_name] = response
