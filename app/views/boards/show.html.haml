@@ -3,4 +3,4 @@
 %ol#slides
   - @board.slides.each do |slide|
     %li
-      = LayoutManager.instance.layout_for_name(slide.layout_name).new.render
+      = LayoutManager.instance.layout_for_name(slide.layout_name).new.render(slide)

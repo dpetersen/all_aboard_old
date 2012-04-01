@@ -8,7 +8,7 @@ class SourceManager
   end
 
   def source_for_name(source_name)
-    source_class = "#{source_name}Source".classify.constantize
+    source_class = source_name.classify.constantize
     source_classes.find { |c| c == source_class }
   end
 

@@ -1,12 +1,7 @@
 require 'spec_helper'
 
 class ManageSlideSpecTestSource < Source
-  def self.name
-    "Manage Slide Spec Test Source"
-  end
-
-  def self.perspectives
-    [ "Test Perspective 1" ]
+  perspective("Test Perspective 1") do
   end
 end
 
@@ -50,7 +45,7 @@ feature "Assign perspectives to a slide" do
   scenario "assign new perspective to an existing slide" do
     visit edit_admin_board_slide_path(@slide.board, @slide)
     within("#new-perspective-assignment") do
-      select "Manage Slide Spec Test Source - Test Perspective 1", from: "Source and perspective"
+      select "ManageSlideSpecTestSource - Test Perspective 1", from: "Source and perspective"
       click_button "Assign Perspective"
     end
 

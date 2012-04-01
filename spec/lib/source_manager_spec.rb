@@ -18,7 +18,7 @@ describe SourceManager do
   end
 
   describe "#source_for_name" do
-    subject { source_manager.source_for_name("SourceManagerSpecTest") }
+    subject { source_manager.source_for_name("SourceManagerSpecTestSource") }
 
     context "with a source class registered" do
       before { source_manager.register_source(SourceManagerSpecTestSource) }

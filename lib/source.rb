@@ -1,13 +1,22 @@
 class Source
   def self.name
-    "You forgot to define a source name"
+    self.to_s
+  end
+
+  def self.perspective(perspective_name, &response)
+    @perspectives ||= {}
+    @perspectives[perspective_name] = response
   end
 
   def self.perspectives
-    [ "You forgot to define source perspectives" ]
+    @perspectives
   end
 
-  def render
-    "You forgot to define a render in your source"
+  def self.perspective_names
+    perspectives.keys
+  end
+
+  def render(perspective_name)
+    self.class.perspectives[perspective_name].()
   end
 end
