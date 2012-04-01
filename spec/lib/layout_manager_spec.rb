@@ -18,21 +18,21 @@ describe LayoutManager do
     subject { layout_manager.layout_for_name("Quarters") }
 
     context "with a layout registered" do
-      before { layout_manager.register_layout(Layouts::Quarters) }
+      before { layout_manager.register_layout(Quarters) }
 
-      it { should == Layouts::Quarters }
+      it { should == Quarters }
     end
   end
 
   describe "#register_layout" do
-    before { layout_manager.register_layout(Layouts::Quarters) }
+    before { layout_manager.register_layout(Quarters) }
     subject { layout_manager.layouts }
 
-    it { should == [ Layouts::Quarters ] }
+    it { should == [ Quarters ] }
   end
 
   describe "#layout_names" do
-    before { layout_manager.register_layout(Layouts::Quarters) }
+    before { layout_manager.register_layout(Quarters) }
     subject { layout_manager.layout_names }
 
     it { should == [ "Quarters" ] }

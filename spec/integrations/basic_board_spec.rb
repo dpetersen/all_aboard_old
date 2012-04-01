@@ -31,7 +31,8 @@ feature "Viewing board" do
     slide = FactoryGirl.create(:slide, board: @board, layout_name: "Quarters")
     slide.perspective_assignments.create!(
       source_name: "BasicBoardSpecTestSource",
-      perspective_name: "A Test Perspective"
+      perspective_name: "A Test Perspective",
+      position: 2
     )
     SourceManager.instance.register_source(BasicBoardSpecTestSource)
   end
@@ -39,7 +40,8 @@ feature "Viewing board" do
   scenario "viewing a board with slides with layouts" do
     visit board_path(@board)
 
-    page.should have_content("Quarters Layout")
-    page.should have_content("Markup from BasicBoardSpecTestSource")
+    within("#pane-2") do
+      page.should have_content("Markup from BasicBoardSpecTestSource")
+    end
   end
 end

@@ -39,4 +39,24 @@ describe PerspectiveAssignment do
       it { should == "MySource,My Perspective" }
     end
   end
+
+  describe "#position" do
+    let(:slide) { FactoryGirl.create(:slide) }
+
+    context "on a Slide's first PositionAssignment" do
+      it "sets a position automatically" do
+        slide.perspective_assignments.build.position.should == 1
+      end
+    end
+
+    context "on a Slide's subsequent PositionAssignments" do
+      before do
+        FactoryGirl.create(:perspective_assignment, slide: slide)
+      end
+
+      it "sets the proper position on a new Slide" do
+        slide.perspective_assignments.build.position.should == 2
+      end
+    end
+  end
 end

@@ -3,7 +3,9 @@ class PerspectiveAssignment < ActiveRecord::Base
 
   validates :slide, :source_name, :perspective_name, presence: true
 
-  attr_accessible :perspective_name, :source_name, :source_and_perspective
+  after_initialize :ensure_positioned
+
+  attr_accessible :perspective_name, :source_name, :source_and_perspective, :position
 
   def source_and_perspective=(source_and_perspective)
     split = source_and_perspective.split(",")
@@ -13,5 +15,13 @@ class PerspectiveAssignment < ActiveRecord::Base
 
   def source_and_perspective
     "#{self.source_name},#{self.perspective_name}"
+  end
+
+protected
+
+  def ensure_positioned
+    if slide.present? && position.blank?
+      self.position = slide.perspective_assignments.count + 1
+    end
   end
 end
