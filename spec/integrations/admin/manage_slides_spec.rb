@@ -1,10 +1,5 @@
 require 'spec_helper'
 
-class ManageSlideSpecTestSource < Source
-  perspective("Test Perspective 1") do
-  end
-end
-
 feature "Add slides" do
   background do
     @board = FactoryGirl.create(:board, name: "Board Name")
@@ -39,13 +34,12 @@ feature "Assign perspectives to a slide" do
   background do
     board = FactoryGirl.create(:board, name: "Board Name")
     @slide = FactoryGirl.create(:slide, board: board)
-    SourceManager.instance.register_source(ManageSlideSpecTestSource)
   end
 
   scenario "assign new perspective to an existing slide" do
     visit edit_admin_board_slide_path(@slide.board, @slide)
     within("#new-perspective-assignment") do
-      select "ManageSlideSpecTestSource - Test Perspective 1", from: "Source and perspective"
+      select "BasicTestSource - A Test Perspective", from: "Source and perspective"
       click_button "Assign Perspective"
     end
 
@@ -58,10 +52,9 @@ feature "List perspective assignments for a slide" do
   background do
     board = FactoryGirl.create(:board, name: "Board Name")
     @slide = FactoryGirl.create(:slide, board: board)
-    SourceManager.instance.register_source(ManageSlideSpecTestSource)
     @slide.perspective_assignments.create!(
-      source_name: "ManageSlideSpecTestSource",
-      perspective_name: "Test Perspective 1"
+      source_name: "BasicTestSource",
+      perspective_name: "A Test Perspective"
     )
   end
 
@@ -69,8 +62,8 @@ feature "List perspective assignments for a slide" do
     visit edit_admin_board_slide_path(@slide.board, @slide)
 
     within("#perspective-assignments ul") do
-      within(".source") { page.should have_content("ManageSlideSpecTestSource") }
-      within(".perspective") { page.should have_content("Test Perspective 1") }
+      within(".source") { page.should have_content("BasicTestSource") }
+      within(".perspective") { page.should have_content("A Test Perspective") }
     end
   end
 end

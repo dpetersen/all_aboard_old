@@ -1,8 +1,5 @@
 require 'spec_helper'
 
-class SourceManagerSpecTestSource < Source
-end
-
 describe SourceManager do
   let(:source_manager) { SourceManager.new }
 
@@ -18,12 +15,12 @@ describe SourceManager do
   end
 
   describe "#source_for_name" do
-    subject { source_manager.source_for_name("SourceManagerSpecTestSource") }
+    subject { source_manager.source_for_name("BasicTestSource") }
 
     context "with a source class registered" do
-      before { source_manager.register_source(SourceManagerSpecTestSource) }
+      before { source_manager.register_source(BasicTestSource) }
 
-      it { should == SourceManagerSpecTestSource }
+      it { should == BasicTestSource }
     end
   end
 
@@ -31,9 +28,9 @@ describe SourceManager do
     subject { source_manager.source_classes }
 
     context "with a source class registered" do
-      before { source_manager.register_source(SourceManagerSpecTestSource) }
+      before { source_manager.register_source(BasicTestSource) }
 
-      it { should == [ SourceManagerSpecTestSource ] }
+      it { should == [ BasicTestSource ] }
     end
   end
 end

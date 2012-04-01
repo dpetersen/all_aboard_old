@@ -1,25 +1,19 @@
 require 'spec_helper'
 
-class SourceSubclass < Source
-  perspective("test_perspective") do
-    "Markup from a test perspective"
-  end
-end
-
-describe SourceSubclass do
+describe BasicTestSource do
   describe ".name" do
-    subject { SourceSubclass.name }
-    it { should == "SourceSubclass" }
+    subject { BasicTestSource.name }
+    it { should == "BasicTestSource" }
   end
 
   describe ".perspective_names" do
-    subject { SourceSubclass.perspective_names }
-    it { should == [ "test_perspective" ] }
+    subject { BasicTestSource.perspective_names }
+    it { should == [ "A Test Perspective" ] }
   end
 
   describe "#render" do
     context "passed an existing perspective name" do
-      subject { SourceSubclass.new.render("test_perspective") }
+      subject { BasicTestSource.new.render("A Test Perspective") }
       it { should == "Markup from a test perspective" }
     end
   end
