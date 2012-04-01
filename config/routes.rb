@@ -7,5 +7,7 @@ AllAboard::Application.routes.draw do
     end
   end
 
-  root to: "sources#index"
+  resources :boards
+
+  root to: "boards#index"
 end
