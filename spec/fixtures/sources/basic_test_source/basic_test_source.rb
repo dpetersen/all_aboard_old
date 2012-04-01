@@ -1,7 +1,5 @@
 class BasicTestSource < Source
-  perspective("A Test Perspective") do
-    "Markup from a test perspective"
-  end
+  perspective("A Test Perspective")
 end
 
 SourceManager.instance.register_source(BasicTestSource)

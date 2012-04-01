@@ -33,4 +33,19 @@ describe SourceManager do
       it { should == [ BasicTestSource ] }
     end
   end
+
+  describe "source_base_path" do
+    subject { source_manager.source_base_path }
+
+    context "by default" do
+      it "defaults to app/sources" do
+        subject.should =~ /app\/sources/
+      end
+    end
+
+    context "when overridden" do
+      before { source_manager.source_base_path = "/another/path" }
+      it { should == "/another/path" }
+    end
+  end
 end
