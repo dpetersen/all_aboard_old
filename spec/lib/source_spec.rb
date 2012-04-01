@@ -18,7 +18,7 @@ describe BasicTestSource do
 
   describe "#render" do
     context "passed an existing perspective name" do
-      subject { BasicTestSource.new.render("A Test Perspective") }
+      subject { BasicTestSource.new.render("A Test Perspective", QuarterPane) }
       it { should == "Markup from a test perspective" }
     end
   end

@@ -12,14 +12,14 @@ describe LayoutRenderingContext do
         )
       end
       let(:layout_rendering_context) { LayoutRenderingContext.new(pane.slide) }
-      subject { layout_rendering_context.content_for_pane(2) }
+      subject { layout_rendering_context.content_for_pane(2, QuarterPane) }
 
       it { should == "Markup from a test perspective" }
     end
 
     context "passed a pane number that has no assignment" do
       let(:slide) { FactoryGirl.create(:slide) }
-      subject { LayoutRenderingContext.new(slide).content_for_pane(1) }
+      subject { LayoutRenderingContext.new(slide).content_for_pane(1, QuarterPane) }
       it { should be_nil }
     end
   end

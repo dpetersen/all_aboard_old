@@ -16,9 +16,9 @@ class Source
     perspectives.map(&:name)
   end
 
-  def render(perspective_name)
+  def render(perspective_name, pane)
     perspective = perspective_for_name(perspective_name)
-    perspective.template.render.strip
+    perspective.template_for_pane(pane).render.strip
   end
 
 protected
