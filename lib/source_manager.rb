@@ -21,4 +21,8 @@ class SourceManager
   def source_classes
     @source_classes ||= []
   end
+
+  def source_names
+    source_classes.map(&:name)
+  end
 end

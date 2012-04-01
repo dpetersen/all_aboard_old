@@ -34,6 +34,16 @@ describe SourceManager do
     end
   end
 
+  describe "#source_names" do
+    subject { source_manager.source_names }
+
+    context "with a source class registered" do
+      before { source_manager.register_source(BasicTestSource) }
+
+      it { should == [ "BasicTestSource" ] }
+    end
+  end
+
   describe "source_base_path" do
     subject { source_manager.source_base_path }
 

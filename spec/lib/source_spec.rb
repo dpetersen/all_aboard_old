@@ -22,4 +22,11 @@ describe BasicTestSource do
       it { should == "Markup from a test perspective" }
     end
   end
+
+  describe ".configurable_attributes" do
+    subject { BasicTestSource.configurable_attributes }
+    it "returns an array of the configurable attributes" do
+      subject.should == [ :a_source_value, :a_second_source_value ]
+    end
+  end
 end

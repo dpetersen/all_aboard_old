@@ -1,0 +1,3 @@
+%ul
+  - @source_names.each do |source_name|
+    %li= link_to source_name, edit_admin_source_path(source_name)

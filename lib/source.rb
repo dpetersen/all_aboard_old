@@ -1,4 +1,6 @@
 class Source
+  cattr_accessor :configurable_attributes
+
   def self.filesystem_name
     self.name.underscore
   end
