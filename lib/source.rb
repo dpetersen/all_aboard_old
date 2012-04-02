@@ -18,12 +18,28 @@ class Source
     perspectives.map(&:name)
   end
 
+  def configuration
+    self.class.configurable_attributes.inject({}) do |h, attribute|
+      h[attribute] = configured_attribute_for(attribute).try(:value)
+      h
+    end
+  end
+
   def render(perspective_name, pane)
     perspective = perspective_for_name(perspective_name)
-    perspective.template_for_pane(pane).render.strip
+    context = PerspectiveRenderingContext.new(self)
+    perspective.template_for_pane(pane).render(context).strip
   end
 
 protected
+
+  def configured_attributes
+    ConfiguredAttribute.where(source_name: self.class.name)
+  end
+
+  def configured_attribute_for(attribute)
+    configured_attributes.where(name: attribute).first
+  end
 
   def perspective_for_name(perspective_name)
     self.class.perspectives.detect { |p| p.name == perspective_name }

@@ -13,7 +13,7 @@ describe BasicTestSource do
 
   describe ".perspective_names" do
     subject { BasicTestSource.perspective_names }
-    it { should == [ "A Test Perspective" ] }
+    it { should == [ "A Test Perspective", "A Perspective With Configuration Data" ] }
   end
 
   describe "#render" do
@@ -27,6 +27,27 @@ describe BasicTestSource do
     subject { BasicTestSource.configurable_attributes }
     it "returns an array of the configurable attributes" do
       subject.should == [ :a_source_value, :a_second_source_value ]
+    end
+  end
+
+  describe "configuration" do
+    subject { BasicTestSource.new.configuration }
+
+    context "when there are no saved ConfiguredAttributes" do
+      it { should == { a_source_value: nil, a_second_source_value: nil } }
+    end
+
+    context "when a ConfiguredAttributes exists" do
+      before do
+        ConfiguredAttribute.create!(
+          source_name: "BasicTestSource",
+          name: "a_second_source_value",
+          value: "Some Saved Value"
+        )
+      end
+      it "includes any saved ConfiguredAttributes" do
+        subject.should == { a_source_value: nil, a_second_source_value: "Some Saved Value" }
+      end
     end
   end
 end
