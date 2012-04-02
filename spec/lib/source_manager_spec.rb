@@ -58,4 +58,15 @@ describe SourceManager do
       it { should == "/another/path" }
     end
   end
+
+  describe "#perform_jobs" do
+    context "passed :five_minutes" do
+      it "runs jobs scheduled to run at that frequency" do
+        TestEveryFiveJob.should_receive(:perform_async)
+        TestFourTimesDailyJob.should_not_receive(:perform_async)
+
+        SourceManager.instance.perform_jobs(:five_minutes)
+      end
+    end
+  end
 end

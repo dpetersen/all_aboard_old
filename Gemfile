@@ -7,6 +7,7 @@ gem 'jquery-rails'
 gem 'inherited_resources'
 gem 'haml'
 gem 'simple_form'
+gem 'sidekiq'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

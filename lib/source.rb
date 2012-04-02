@@ -1,6 +1,16 @@
 class Source
   cattr_accessor :configurable_attributes
 
+  def self.has_job(job_class, frequency)
+    @jobs_for_frequencies ||= {}
+    @jobs_for_frequencies[frequency] ||= []
+    @jobs_for_frequencies[frequency] << job_class
+  end
+
+  def self.jobs_for_frequencies
+    @jobs_for_frequencies || {}
+  end
+
   def self.filesystem_name
     self.name.underscore
   end

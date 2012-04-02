@@ -25,4 +25,13 @@ class SourceManager
   def source_names
     source_classes.map(&:name)
   end
+
+  def perform_jobs(frequency)
+    source_classes.each do |source_class|
+      jobs_for_frequency = source_class.jobs_for_frequencies[frequency]
+      next if jobs_for_frequency.nil?
+
+      jobs_for_frequency.each { |job_class| job_class.perform_async }
+    end
+  end
 end
