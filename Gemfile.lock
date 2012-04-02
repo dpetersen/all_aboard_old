@@ -61,6 +61,8 @@ GEM
     factory_girl_rails (3.0.0)
       factory_girl (~> 3.0.0)
       railties (>= 3.0.0)
+    fakeredis (0.3.1)
+      redis (~> 2.2.0)
     ffi (1.0.11)
     haml (3.1.4)
     has_scope (0.5.1)
@@ -190,6 +192,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 3.2.1)
   factory_girl_rails
+  fakeredis
   haml
   inherited_resources
   jquery-rails
@@ -197,6 +200,8 @@ DEPENDENCIES
   launchy
   pry
   rails (= 3.2.3)
+  redis
+  redis-namespace
   rspec-rails
   sass-rails (~> 3.2.3)
   shoulda-matchers

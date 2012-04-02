@@ -1,4 +1,6 @@
 class Source
+  extend Source::Persistence
+
   cattr_accessor :configurable_attributes
 
   def self.has_job(job_class, frequency)

@@ -50,4 +50,16 @@ describe BasicTestSource do
       end
     end
   end
+
+  describe "#retrieve_data" do
+    context "when data has been persisted" do
+      let(:stored_data) { { key_1: "one", key_2: "two" } }
+      before { BasicTestSource.persist_data(stored_data) }
+      subject { BasicTestSource.retrieve_data }
+
+      its(:length) { should == 2 }
+      it { subject[:key_1].should == "one" }
+      it { subject[:key_2].should == "two" }
+    end
+  end
 end
