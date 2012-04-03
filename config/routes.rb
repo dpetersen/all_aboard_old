@@ -1,5 +1,5 @@
 AllAboard::Engine.routes.draw do
-  match "admin" => "admin/admin#home", as: "admin"
+  match "admin" => "admin/home#home", as: "admin"
 
   namespace :admin do
     resources :boards do

@@ -1,4 +1,3 @@
 class AllAboard::Admin::AdminController < ApplicationController
-  def home
-  end
+  layout "all_aboard/admin"
 end
