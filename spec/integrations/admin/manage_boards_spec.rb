@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "Creating a Board" do
   scenario "creating a board with valid attributes" do
-    visit admin_boards_path
+    visit AllAboard::Engine.routes.url_helpers.admin_boards_path
     click_link "New Board"
     fill_in "Name", with: "My New Board"
     click_button "Create Board"
@@ -12,7 +12,7 @@ feature "Creating a Board" do
   end
 
   scenario "creating a board with invalid attributes" do
-    visit new_admin_board_path
+    visit AllAboard::Engine.routes.url_helpers.new_admin_board_path
     fill_in "Name", with: ""
     click_button "Create Board"
 
@@ -26,7 +26,7 @@ feature "Showing a Board" do
   end
 
   scenario "following a link from the Boards list" do
-    visit admin_boards_path
+    visit AllAboard::Engine.routes.url_helpers.admin_boards_path
     click_link "Board Name"
 
     page.should have_content("Board Name")

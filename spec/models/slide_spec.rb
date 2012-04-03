@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Slide do
+describe AllAboard::Slide do
   it { should belong_to(:board) }
   it { should have_many(:perspective_assignments) }
 

@@ -18,7 +18,7 @@ describe BasicTestSource do
 
   describe "#render" do
     context "passed an existing perspective name" do
-      subject { BasicTestSource.new.render("A Test Perspective", QuarterPane) }
+      subject { BasicTestSource.new.render("A Test Perspective", AllAboard::QuarterPane) }
       it { should == "Markup from a test perspective" }
     end
   end
@@ -39,7 +39,7 @@ describe BasicTestSource do
 
     context "when a ConfiguredAttributes exists" do
       before do
-        ConfiguredAttribute.create!(
+        AllAboard::ConfiguredAttribute.create!(
           source_name: "BasicTestSource",
           name: "a_second_source_value",
           value: "Some Saved Value"

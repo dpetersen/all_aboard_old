@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-class TestLayout < Layout
+class TestLayout < AllAboard::Layout
 end
 
 describe TestLayout do
@@ -20,7 +20,7 @@ describe TestLayout do
 
     before do
       Tilt.stub(new: template)
-      LayoutRenderingContext.stub(new: layout_rendering_context)
+      AllAboard::LayoutRenderingContext.stub(new: layout_rendering_context)
     end
 
     context "when rendering the template" do
@@ -31,7 +31,7 @@ describe TestLayout do
       end
 
       it "creates a LayoutRenderingContext with the passed-in slide" do
-        LayoutRenderingContext.should_receive(:new).with(slide).and_return(layout_rendering_context)
+        AllAboard::LayoutRenderingContext.should_receive(:new).with(slide).and_return(layout_rendering_context)
       end
 
       it "renders the template in the LayoutRenderingContext's context" do

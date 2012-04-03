@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PerspectiveAssignment do
+describe AllAboard::PerspectiveAssignment do
   it { should belong_to(:slide) }
   it { should validate_presence_of(:slide) }
   it { should validate_presence_of(:source_name) }
@@ -8,7 +8,7 @@ describe PerspectiveAssignment do
 
   describe "source_and_perspective=" do
     context "passed comma separated values" do
-      subject { PerspectiveAssignment.new }
+      subject { AllAboard::PerspectiveAssignment.new }
       before do
         subject.source_and_perspective = "MySource,Perspective Name"
       end
@@ -30,7 +30,7 @@ describe PerspectiveAssignment do
   describe "#source_and_perspective" do
     context "with a source and a perspective set" do
       subject do
-        PerspectiveAssignment.new(
+        AllAboard::PerspectiveAssignment.new(
           perspective_name: "My Perspective",
           source_name: "MySource"
         ).source_and_perspective

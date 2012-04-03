@@ -1,16 +1,16 @@
 require 'spec_helper'
 
-describe SourceManager do
-  let(:source_manager) { SourceManager.new }
+describe AllAboard::SourceManager do
+  let(:source_manager) { AllAboard::SourceManager.new }
 
   describe ".instance" do
     it "returns an instance of itself" do
-      SourceManager.instance.should be_a(SourceManager)
+      AllAboard::SourceManager.instance.should be_a(AllAboard::SourceManager)
     end
 
     it "returns the same instance for every call" do
-      first_instance = SourceManager.instance
-      SourceManager.instance.should == first_instance
+      first_instance = AllAboard::SourceManager.instance
+      AllAboard::SourceManager.instance.should == first_instance
     end
   end
 
@@ -65,7 +65,7 @@ describe SourceManager do
         TestEveryFiveJob.should_receive(:perform_async)
         TestFourTimesDailyJob.should_not_receive(:perform_async)
 
-        SourceManager.instance.queue_jobs_for_frequency(:five_minutes)
+        AllAboard::SourceManager.instance.queue_jobs_for_frequency(:five_minutes)
       end
     end
   end

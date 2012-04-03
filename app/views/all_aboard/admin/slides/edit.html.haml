@@ -1,0 +1,18 @@
+%h2 Editing #{@slide.board.name} slide ##{@slide.position}
+
+= simple_form_for [ :admin, @board, @slide ] do |f|
+  = f.input :layout_name, collection: AllAboard::LayoutManager.instance.layout_names
+
+  = f.button :submit, "Set Layout"
+
+#perspective-assignments
+  #new-perspective-assignment
+    = simple_form_for [ :admin, @board, @slide, @slide.perspective_assignments.build ] do |f|
+      = f.input :source_and_perspective, collection: sources_and_perspectives
+      = f.button :submit, "Assign Perspective"
+
+  %ul
+    - @slide.perspective_assignments.each do |perspective_assignment|
+      %li
+        .source= perspective_assignment.source_name
+        .perspective= perspective_assignment.perspective_name

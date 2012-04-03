@@ -6,7 +6,7 @@ feature "Add slides" do
   end
 
   scenario "Clicking the button.  Not much to say." do
-    visit admin_board_path(@board)
+    visit AllAboard::Engine.routes.url_helpers.admin_board_path(@board)
     click_button "Add Slide"
 
     page.should have_content("Slide was successfully created")
@@ -21,7 +21,7 @@ feature "Assign layout to slide" do
   end
 
   scenario "assign a layout to an existing slide" do
-    visit edit_admin_board_slide_path(@slide.board, @slide)
+    visit AllAboard::Engine.routes.url_helpers.edit_admin_board_slide_path(@slide.board, @slide)
     select "Quarters", from: "Layout name"
     click_button "Set Layout"
 
@@ -37,7 +37,7 @@ feature "Assign perspectives to a slide" do
   end
 
   scenario "assign new perspective to an existing slide" do
-    visit edit_admin_board_slide_path(@slide.board, @slide)
+    visit AllAboard::Engine.routes.url_helpers.edit_admin_board_slide_path(@slide.board, @slide)
     within("#new-perspective-assignment") do
       select "BasicTestSource - A Test Perspective", from: "Source and perspective"
       click_button "Assign Perspective"
@@ -59,7 +59,7 @@ feature "List perspective assignments for a slide" do
   end
 
   scenario "visiting slide edit page" do
-    visit edit_admin_board_slide_path(@slide.board, @slide)
+    visit AllAboard::Engine.routes.url_helpers.edit_admin_board_slide_path(@slide.board, @slide)
 
     within("#perspective-assignments ul") do
       within(".source") { page.should have_content("BasicTestSource") }

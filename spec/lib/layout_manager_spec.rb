@@ -1,16 +1,16 @@
 require 'spec_helper'
 
-describe LayoutManager do
-  let(:layout_manager) { LayoutManager.new }
+describe AllAboard::LayoutManager do
+  let(:layout_manager) { AllAboard::LayoutManager.new }
 
   describe ".instance" do
     it "returns an instance of itself" do
-      LayoutManager.instance.should be_a(LayoutManager)
+      AllAboard::LayoutManager.instance.should be_a(AllAboard::LayoutManager)
     end
 
     it "returns the same instance for every call" do
-      first_instance = LayoutManager.instance
-      LayoutManager.instance.should == first_instance
+      first_instance = AllAboard::LayoutManager.instance
+      AllAboard::LayoutManager.instance.should == first_instance
     end
   end
 
@@ -18,21 +18,21 @@ describe LayoutManager do
     subject { layout_manager.layout_for_name("Quarters") }
 
     context "with a layout registered" do
-      before { layout_manager.register_layout(Quarters) }
+      before { layout_manager.register_layout(AllAboard::Quarters) }
 
-      it { should == Quarters }
+      it { should == AllAboard::Quarters }
     end
   end
 
   describe "#register_layout" do
-    before { layout_manager.register_layout(Quarters) }
+    before { layout_manager.register_layout(AllAboard::Quarters) }
     subject { layout_manager.layouts }
 
-    it { should == [ Quarters ] }
+    it { should == [ AllAboard::Quarters ] }
   end
 
   describe "#layout_names" do
-    before { layout_manager.register_layout(Quarters) }
+    before { layout_manager.register_layout(AllAboard::Quarters) }
     subject { layout_manager.layout_names }
 
     it { should == [ "Quarters" ] }

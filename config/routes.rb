@@ -1,4 +1,4 @@
-AllAboard::Application.routes.draw do
+AllAboard::Engine.routes.draw do
   match "admin" => "admin/admin#home", as: "admin"
 
   namespace :admin do

@@ -6,13 +6,13 @@ feature "Board List" do
   end
 
   scenario "Viewing the list of boards" do
-    visit root_path
+    visit AllAboard::Engine.routes.url_helpers.boards_path
 
     page.should have_content("A Test Board")
   end
 
   scenario "Choosing a board" do
-    visit root_path
+    visit AllAboard::Engine.routes.url_helpers.boards_path
     click_link "A Test Board"
 
     page.should have_content("A Test Board")
@@ -36,7 +36,7 @@ feature "Viewing board" do
       position: 1
     )
 
-    ConfiguredAttribute.create!(
+    AllAboard::ConfiguredAttribute.create!(
       source_name: "BasicTestSource",
       name: "a_source_value",
       value: "value from database"
@@ -44,7 +44,7 @@ feature "Viewing board" do
   end
 
   scenario "viewing a board with slides with layouts" do
-    visit board_path(@board)
+    visit AllAboard::Engine.routes.url_helpers.board_path(@board)
 
     within("#pane-2") do
       page.should have_content("Markup from a test perspective")
