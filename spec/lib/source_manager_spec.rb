@@ -59,13 +59,13 @@ describe SourceManager do
     end
   end
 
-  describe "#perform_jobs" do
+  describe "#queue_jobs_for_frequency" do
     context "passed :five_minutes" do
       it "runs jobs scheduled to run at that frequency" do
         TestEveryFiveJob.should_receive(:perform_async)
         TestFourTimesDailyJob.should_not_receive(:perform_async)
 
-        SourceManager.instance.perform_jobs(:five_minutes)
+        SourceManager.instance.queue_jobs_for_frequency(:five_minutes)
       end
     end
   end

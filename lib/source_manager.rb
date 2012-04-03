@@ -26,7 +26,7 @@ class SourceManager
     source_classes.map(&:name)
   end
 
-  def perform_jobs(frequency)
+  def queue_jobs_for_frequency(frequency)
     source_classes.each do |source_class|
       jobs_for_frequency = source_class.jobs_for_frequencies[frequency]
       next if jobs_for_frequency.nil?
