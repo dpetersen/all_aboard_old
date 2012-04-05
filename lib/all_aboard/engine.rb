@@ -7,5 +7,9 @@ module AllAboard
     initializer "redis connection" do
       AllAboard.redis = Redis.new
     end
+
+    initializer "require and register layouts" do
+      require File.join(Engine.root, "app", "layouts", "all_aboard", "quarters", "quarters")
+    end
   end
 end
