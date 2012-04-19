@@ -1,12 +1,17 @@
 class AllAboard::SourceManager
-  attr_accessor :source_base_path
+  attr_reader :source_base_paths
 
   def self.instance
     @instance ||= self.new
   end
 
   def initialize
-    self.source_base_path = File.join(AllAboard::Engine.root, "app", "sources")
+    @source_base_paths = []
+    register_source_base_path(File.join(AllAboard::Engine.root, "app", "sources"))
+  end
+
+  def register_source_base_path(path)
+    @source_base_paths.insert(0, path)
   end
 
   def register_source(source_class)

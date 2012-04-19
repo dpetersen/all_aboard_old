@@ -44,18 +44,25 @@ describe AllAboard::SourceManager do
     end
   end
 
-  describe "source_base_path" do
-    subject { source_manager.source_base_path }
+  describe "#source_base_paths" do
+    subject { source_manager.source_base_paths }
 
     context "by default" do
-      it "defaults to app/sources" do
-        subject.should =~ /app\/sources/
+      its(:length) { should == 1 }
+
+      it "includes app/sources" do
+        subject.first.should =~ /app\/sources/
       end
     end
 
-    context "when overridden" do
-      before { source_manager.source_base_path = "/another/path" }
-      it { should == "/another/path" }
+    context "when additional paths have been registered" do
+      before { source_manager.register_source_base_path("another/path") }
+
+      its(:length) { should == 2 }
+
+      it "adds the additional path to the front of the list" do
+        subject.first.should == "another/path"
+      end
     end
   end
 

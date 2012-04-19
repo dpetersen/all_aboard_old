@@ -14,11 +14,12 @@ module AllAboard
   protected
 
     def template_path_for_pane(pane)
-      template_path = File.join(
-        SourceManager.instance.source_base_path,
-        @source_class.filesystem_name,
-        template_filename_for_pane(pane)
-      )
+      source_relative_path = File.join(@source_class.filesystem_name, template_filename_for_pane(pane))
+      source_bases_finder.find_file(source_relative_path)
+    end
+
+    def source_bases_finder
+      MultipathFinder.new(SourceManager.instance.source_base_paths)
     end
 
     def template_filename_for_pane(pane)
