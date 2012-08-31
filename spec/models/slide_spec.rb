@@ -12,12 +12,12 @@ describe AllAboard::Slide do
     subject { board.slides.build.position }
 
     context "on a Board's first slide" do
-      it { should == 1}
+      it { should eq(1)}
     end
 
     context "on a Board's subsequent slides" do
       before { board.slides.create! }
-      it { should == 2 }
+      it { should eq(2) }
     end
   end
 end

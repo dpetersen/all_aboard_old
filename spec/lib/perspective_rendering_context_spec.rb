@@ -5,6 +5,6 @@ describe AllAboard::PerspectiveRenderingContext do
     let(:source) { double("source") }
     subject { AllAboard::PerspectiveRenderingContext.new(source) }
 
-    its(:parent_source) { should == source }
+    its(:parent_source) { should eq(source) }
   end
 end

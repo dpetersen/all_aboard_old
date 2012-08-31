@@ -13,8 +13,8 @@ describe AllAboard::PerspectiveAssignment do
         subject.source_and_perspective = "MySource,Perspective Name"
       end
 
-      its(:source_name) { should == "MySource" }
-      its(:perspective_name) { should == "Perspective Name" }
+      its(:source_name) { should eq("MySource") }
+      its(:perspective_name) { should eq("Perspective Name") }
     end
 
     context "passed with a perspective that has a comma in the name" do
@@ -22,8 +22,8 @@ describe AllAboard::PerspectiveAssignment do
         subject.source_and_perspective = "MySource,Perspective Name, with comma"
       end
 
-      its(:source_name) { should == "MySource" }
-      its(:perspective_name) { should == "Perspective Name, with comma" }
+      its(:source_name) { should eq("MySource") }
+      its(:perspective_name) { should eq("Perspective Name, with comma") }
     end
   end
 
@@ -36,7 +36,7 @@ describe AllAboard::PerspectiveAssignment do
         ).source_and_perspective
       end
 
-      it { should == "MySource,My Perspective" }
+      it { should eq("MySource,My Perspective") }
     end
   end
 

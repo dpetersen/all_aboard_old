@@ -20,7 +20,7 @@ describe AllAboard::SourceManager do
     context "with a source class registered" do
       before { source_manager.register_source(BasicTestSource) }
 
-      it { should == BasicTestSource }
+      it { should eq(BasicTestSource) }
     end
   end
 
@@ -30,7 +30,7 @@ describe AllAboard::SourceManager do
     context "with a source class registered" do
       before { source_manager.register_source(BasicTestSource) }
 
-      it { should == [ BasicTestSource ] }
+      it { should eq([ BasicTestSource ]) }
     end
   end
 
@@ -40,7 +40,7 @@ describe AllAboard::SourceManager do
     context "with a source class registered" do
       before { source_manager.register_source(BasicTestSource) }
 
-      it { should == [ "BasicTestSource" ] }
+      it { should eq([ "BasicTestSource" ]) }
     end
   end
 
@@ -48,7 +48,7 @@ describe AllAboard::SourceManager do
     subject(:base_paths) { source_manager.source_base_paths }
 
     context "by default" do
-      its(:length) { should == 1 }
+      its(:length) { should eq(1) }
 
       it "includes app/sources" do
         expect(base_paths.first).to match(/app\/sources/)
@@ -58,7 +58,7 @@ describe AllAboard::SourceManager do
     context "when additional paths have been registered" do
       before { source_manager.register_source_base_path("another/path") }
 
-      its(:length) { should == 2 }
+      its(:length) { should eq(2) }
 
       it "adds the additional path to the front of the list" do
         expect(base_paths.first).to eq("another/path")

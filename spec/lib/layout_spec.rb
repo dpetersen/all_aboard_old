@@ -6,7 +6,7 @@ end
 describe TestLayout do
   describe ".name" do
     subject { TestLayout.name }
-    it { should == "TestLayout" }
+    it { should eq("TestLayout") }
   end
 
   describe "#render" do

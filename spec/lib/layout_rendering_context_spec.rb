@@ -14,7 +14,7 @@ describe AllAboard::LayoutRenderingContext do
       let(:layout_rendering_context) { AllAboard::LayoutRenderingContext.new(pane.slide) }
       subject { layout_rendering_context.content_for_pane(2, AllAboard::QuarterPane) }
 
-      it { should == "Markup from a test perspective" }
+      it { should eq("Markup from a test perspective") }
     end
 
     context "passed a pane number that has no assignment" do

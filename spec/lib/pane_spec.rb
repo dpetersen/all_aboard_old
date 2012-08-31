@@ -3,7 +3,7 @@ require 'spec_helper'
 describe AllAboard::Pane do
   describe ".filesystem_name" do
     subject { AllAboard::Pane.filesystem_name }
-    it { should == "pane" }
+    it { should eq("pane") }
   end
 
   describe "#width" do

@@ -20,7 +20,7 @@ describe AllAboard::LayoutManager do
     context "with a layout registered" do
       before { layout_manager.register_layout(AllAboard::Quarters) }
 
-      it { should == AllAboard::Quarters }
+      it { should eq(AllAboard::Quarters) }
     end
   end
 
@@ -28,13 +28,13 @@ describe AllAboard::LayoutManager do
     before { layout_manager.register_layout(AllAboard::Quarters) }
     subject { layout_manager.layouts }
 
-    it { should == [ AllAboard::Quarters ] }
+    it { should eq([ AllAboard::Quarters ]) }
   end
 
   describe "#layout_names" do
     before { layout_manager.register_layout(AllAboard::Quarters) }
     subject { layout_manager.layout_names }
 
-    it { should == [ "Quarters" ] }
+    it { should eq([ "Quarters" ]) }
   end
 end

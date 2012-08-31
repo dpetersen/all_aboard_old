@@ -5,7 +5,7 @@ describe AllAboard::Perspective do
     let(:perspective) { AllAboard::Perspective.new(BasicTestSource, "Perspective Name") }
     subject { perspective.name }
 
-    it { should == "Perspective Name" }
+    it { should eq("Perspective Name") }
   end
 
   describe "#template_for_pane" do
@@ -18,7 +18,7 @@ describe AllAboard::Perspective do
     end
     subject { perspective.template_for_pane(AllAboard::QuarterPane) }
 
-    it { should == template }
+    it { should eq(template) }
 
     context "when called" do
       after { subject }
