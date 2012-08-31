@@ -45,7 +45,7 @@ describe AllAboard::PerspectiveAssignment do
 
     context "on a Slide's first PositionAssignment" do
       it "sets a position automatically" do
-        slide.perspective_assignments.build.position.should == 1
+        expect(slide.perspective_assignments.build.position).to eq(1)
       end
     end
 
@@ -55,7 +55,7 @@ describe AllAboard::PerspectiveAssignment do
       end
 
       it "sets the proper position on a new Slide" do
-        slide.perspective_assignments.build.position.should == 2
+        expect(slide.perspective_assignments.build.position).to eq(2)
       end
     end
   end

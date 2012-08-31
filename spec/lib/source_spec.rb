@@ -25,9 +25,7 @@ describe BasicTestSource do
 
   describe ".configurable_attributes" do
     subject { BasicTestSource.configurable_attributes }
-    it "returns an array of the configurable attributes" do
-      subject.should == [ :a_source_value, :a_second_source_value ]
-    end
+    it { should == [ :a_source_value, :a_second_source_value ] }
   end
 
   describe "configuration" do
@@ -45,9 +43,7 @@ describe BasicTestSource do
           value: "Some Saved Value"
         )
       end
-      it "includes any saved ConfiguredAttributes" do
-        subject.should == { a_source_value: nil, a_second_source_value: "Some Saved Value" }
-      end
+      it { should == { a_source_value: nil, a_second_source_value: "Some Saved Value" } }
     end
   end
 
@@ -58,8 +54,8 @@ describe BasicTestSource do
       subject { BasicTestSource.retrieve_data }
 
       its(:length) { should == 2 }
-      it { subject[:key_1].should == "one" }
-      it { subject[:key_2].should == "two" }
+      it { expect(subject[:key_1]).to eq("one") }
+      it { expect(subject[:key_2]).to eq("two") }
     end
   end
 end

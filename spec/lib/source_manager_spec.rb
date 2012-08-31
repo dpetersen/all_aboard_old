@@ -5,12 +5,12 @@ describe AllAboard::SourceManager do
 
   describe ".instance" do
     it "returns an instance of itself" do
-      AllAboard::SourceManager.instance.should be_a(AllAboard::SourceManager)
+      expect(AllAboard::SourceManager.instance).to be_a(AllAboard::SourceManager)
     end
 
     it "returns the same instance for every call" do
       first_instance = AllAboard::SourceManager.instance
-      AllAboard::SourceManager.instance.should == first_instance
+      expect(AllAboard::SourceManager.instance).to eq(first_instance)
     end
   end
 
@@ -45,13 +45,13 @@ describe AllAboard::SourceManager do
   end
 
   describe "#source_base_paths" do
-    subject { source_manager.source_base_paths }
+    subject(:base_paths) { source_manager.source_base_paths }
 
     context "by default" do
       its(:length) { should == 1 }
 
       it "includes app/sources" do
-        subject.first.should =~ /app\/sources/
+        expect(base_paths.first).to match(/app\/sources/)
       end
     end
 
@@ -61,7 +61,7 @@ describe AllAboard::SourceManager do
       its(:length) { should == 2 }
 
       it "adds the additional path to the front of the list" do
-        subject.first.should == "another/path"
+        expect(base_paths.first).to eq("another/path")
       end
     end
   end

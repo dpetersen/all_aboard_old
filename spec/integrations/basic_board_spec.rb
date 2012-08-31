@@ -8,14 +8,14 @@ feature "Board List" do
   scenario "Viewing the list of boards" do
     visit AllAboard::Engine.routes.url_helpers.boards_path
 
-    page.should have_content("A Test Board")
+    expect(page).to have_content("A Test Board")
   end
 
   scenario "Choosing a board" do
     visit AllAboard::Engine.routes.url_helpers.boards_path
     click_link "A Test Board"
 
-    page.should have_content("A Test Board")
+    expect(page).to have_content("A Test Board")
   end
 end
 
@@ -47,11 +47,11 @@ feature "Viewing board" do
     visit AllAboard::Engine.routes.url_helpers.board_path(@board)
 
     within("#pane-2") do
-      page.should have_content("Markup from a test perspective")
+      expect(page).to have_content("Markup from a test perspective")
     end
 
     within("#pane-1") do
-      page.should have_content("Markup with a value from configuration: value from database")
+      expect(page).to have_content("Markup with a value from configuration: value from database")
     end
   end
 end

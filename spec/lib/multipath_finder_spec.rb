@@ -13,9 +13,7 @@ describe AllAboard::MultipathFinder do
           File.stub(:exists?).with("second_path/file.html.haml").and_return(true)
         end
 
-        it "returns the right file path" do
-          subject.should == "first_path/file.html.haml"
-        end
+        it { should == "first_path/file.html.haml" }
       end
 
       context "when a match exists in a secondary path" do
@@ -24,9 +22,7 @@ describe AllAboard::MultipathFinder do
           File.stub(:exists?).with("second_path/file.html.haml").and_return(true)
         end
 
-        it "finds the right file path" do
-          subject.should == "second_path/file.html.haml"
-        end
+        it { should == "second_path/file.html.haml" }
       end
 
       context "when no matches exist" do

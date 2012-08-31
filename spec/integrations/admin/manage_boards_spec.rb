@@ -7,8 +7,8 @@ feature "Creating a Board" do
     fill_in "Name", with: "My New Board"
     click_button "Create Board"
 
-    page.should have_content("Board was successfully created")
-    page.should have_content("My New Board")
+    expect(page).to have_content("Board was successfully created")
+    expect(page).to have_content("My New Board")
   end
 
   scenario "creating a board with invalid attributes" do
@@ -16,7 +16,7 @@ feature "Creating a Board" do
     fill_in "Name", with: ""
     click_button "Create Board"
 
-    page.should have_content("Namecan't be blank")
+    expect(page).to have_content("Namecan't be blank")
   end
 end
 
@@ -29,6 +29,6 @@ feature "Showing a Board" do
     visit AllAboard::Engine.routes.url_helpers.admin_boards_path
     click_link "Board Name"
 
-    page.should have_content("Board Name")
+    expect(page).to have_content("Board Name")
   end
 end

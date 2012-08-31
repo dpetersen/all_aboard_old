@@ -40,7 +40,7 @@ describe TestLayout do
     end
 
     it "returns the templates rendered string" do
-      render.should == "Render Return Value"
+      expect(render).to eq("Render Return Value")
     end
   end
 end

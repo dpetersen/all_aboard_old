@@ -5,14 +5,14 @@ feature "Configuring a source" do
     visit AllAboard::Engine.routes.url_helpers.admin_path
     click_link "Configure Sources"
 
-    page.should have_content("BasicTestSource")
+    expect(page).to have_content("BasicTestSource")
   end
 
   scenario "viewing a source's configuration" do
     visit AllAboard::Engine.routes.url_helpers.admin_sources_path
     click_link "BasicTestSource"
 
-    page.should have_content("Configuring BasicTestSource")
+    expect(page).to have_content("Configuring BasicTestSource")
   end
 
   scenario "configuring a source" do
@@ -22,9 +22,9 @@ feature "Configuring a source" do
     fill_in "A second source value", with: "Second Value"
     click_button "Save"
 
-    page.should have_content("Configuring BasicTestSource")
-    find_field("A source value").value.should == "First Value"
-    find_field("A second source value").value.should == "Second Value"
+    expect(page).to have_content("Configuring BasicTestSource")
+    expect(find_field("A source value").value).to eq("First Value")
+    expect(find_field("A second source value").value).to eq("Second Value")
   end
 end
 
@@ -35,15 +35,15 @@ feature "update a configured source" do
 
   scenario "update a source that's already been configured" do
     visit AllAboard::Engine.routes.url_helpers.edit_admin_source_path("BasicTestSource")
-    find_field("A source value").value.should == "First Value"
-    find_field("A second source value").value.should be_blank
+    expect(find_field("A source value").value).to eq("First Value")
+    expect(find_field("A second source value").value).to be_blank
 
     fill_in "A source value", with: "Updated First Value"
     fill_in "A second source value", with: "Second Value"
     click_button "Save"
 
-    page.should have_content("Configuring BasicTestSource")
-    find_field("A source value").value.should == "Updated First Value"
-    find_field("A second source value").value.should == "Second Value"
+    expect(page).to have_content("Configuring BasicTestSource")
+    expect(find_field("A source value").value).to eq("Updated First Value")
+    expect(find_field("A second source value").value).to eq("Second Value")
   end
 end

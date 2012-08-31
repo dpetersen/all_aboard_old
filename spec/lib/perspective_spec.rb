@@ -37,7 +37,7 @@ describe AllAboard::Perspective do
     end
 
     it "returns tilt template" do
-      template_for_pane.should == template
+      expect(template_for_pane).to eq(template)
     end
   end
 end

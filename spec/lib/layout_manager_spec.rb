@@ -5,12 +5,12 @@ describe AllAboard::LayoutManager do
 
   describe ".instance" do
     it "returns an instance of itself" do
-      AllAboard::LayoutManager.instance.should be_a(AllAboard::LayoutManager)
+      expect(AllAboard::LayoutManager.instance).to be_a(AllAboard::LayoutManager)
     end
 
     it "returns the same instance for every call" do
       first_instance = AllAboard::LayoutManager.instance
-      AllAboard::LayoutManager.instance.should == first_instance
+      expect(AllAboard::LayoutManager.instance).to eq(first_instance)
     end
   end
 
