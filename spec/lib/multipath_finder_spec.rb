@@ -36,7 +36,7 @@ describe AllAboard::MultipathFinder do
         end
 
         it "raises an exception" do
-          expect { subject }.should raise_error(/file 'file\.html\.haml'/)
+          expect { subject }.to raise_error(/file 'file\.html\.haml'/)
         end
       end
     end
