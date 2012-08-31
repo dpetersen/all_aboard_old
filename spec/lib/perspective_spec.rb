@@ -16,28 +16,24 @@ describe AllAboard::Perspective do
       AllAboard::MultipathFinder.stub(new: multipath_finder)
       Tilt.stub(new: template)
     end
+    subject { perspective.template_for_pane(AllAboard::QuarterPane) }
 
-    def template_for_pane
-      perspective.template_for_pane(AllAboard::QuarterPane)
-    end
+    it { should == template }
 
-    it "instantiates a MultipathFinder with the expected paths" do
-      AllAboard::MultipathFinder.should_receive(:new).with(AllAboard::SourceManager.instance.source_base_paths)
-      template_for_pane
-    end
+    context "when called" do
+      after { subject }
 
-    it "calls #find_file on the MultipathFinder with the expected filename" do
-      multipath_finder.should_receive(:find_file).with("basic_test_source/perspective_name.quarter_pane.html.haml")
-      template_for_pane
-    end
+      it "instantiates a MultipathFinder with the expected paths" do
+        AllAboard::MultipathFinder.should_receive(:new).with(AllAboard::SourceManager.instance.source_base_paths)
+      end
 
-    it "instantiates a tilt template with the found file path" do
-      Tilt.should_receive(:new).with("found/file/path")
-      template_for_pane
-    end
+      it "calls #find_file on the MultipathFinder with the expected filename" do
+        multipath_finder.should_receive(:find_file).with("basic_test_source/perspective_name.quarter_pane.html.haml")
+      end
 
-    it "returns tilt template" do
-      expect(template_for_pane).to eq(template)
+      it "instantiates a tilt template with the found file path" do
+        Tilt.should_receive(:new).with("found/file/path")
+      end
     end
   end
 end
