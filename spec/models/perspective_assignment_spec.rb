@@ -42,21 +42,16 @@ describe AllAboard::PerspectiveAssignment do
 
   describe "#position" do
     let(:slide) { FactoryGirl.create(:slide) }
+    let(:perspective_assignment) { slide.perspective_assignments.build }
+    subject { perspective_assignment.position }
 
     context "on a Slide's first PositionAssignment" do
-      it "sets a position automatically" do
-        expect(slide.perspective_assignments.build.position).to eq(1)
-      end
+      it { should eq(1) }
     end
 
     context "on a Slide's subsequent PositionAssignments" do
-      before do
-        FactoryGirl.create(:perspective_assignment, slide: slide)
-      end
-
-      it "sets the proper position on a new Slide" do
-        expect(slide.perspective_assignments.build.position).to eq(2)
-      end
+      before { FactoryGirl.create(:perspective_assignment, slide: slide) }
+      it { should eq(2) }
     end
   end
 end
