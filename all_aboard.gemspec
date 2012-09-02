@@ -32,8 +32,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'pry'
   s.add_development_dependency 'spin'
   s.add_development_dependency 'kicker'
+  s.add_development_dependency 'rb-fsevent'
   s.add_development_dependency 'shoulda-matchers'
   s.add_development_dependency 'thin'
-  s.add_development_dependency 'factory_girl'
   s.add_development_dependency 'fakeredis'
 end

@@ -1,23 +1,25 @@
 require 'spec_helper'
 
 describe AllAboard::Slide do
-  it { should belong_to(:board) }
-  it { should have_many(:perspective_assignments) }
-
-  it { should validate_presence_of(:board) }
-  it { should validate_presence_of(:position) }
-
-  describe "#position" do
-    let(:board) { FactoryGirl.create(:board) }
-    subject { board.slides.build.position }
-
-    context "on a Board's first slide" do
-      it { should eq(1)}
+  describe ".new" do
+    context "with no arguments" do
+      subject { AllAboard::Slide.new }
+      its(:layout_name) { should be_nil }
+      its(:position) { should be_nil }
+      its(:perspective_assignments) { should be_empty }
     end
 
-    context "on a Board's subsequent slides" do
-      before { board.slides.create! }
-      it { should eq(2) }
+    context "passed attributes" do
+      subject do
+        AllAboard::Slide.new(
+          layout_name: "Test Layout",
+          position: 2,
+          perspective_assignments: [ "assignment" ]
+        )
+      end
+      its(:layout_name) { should eq("Test Layout") }
+      its(:position) { should eq(2) }
+      its(:perspective_assignments) { should eq([ "assignment" ]) }
     end
   end
 end

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "Board List" do
   background do
-    FactoryGirl.create(:board, name: "A Test Board")
+    AllAboard::Persistence::BoardPersistence::BoardMetadata.create!(name: "A Test Board")
   end
 
   scenario "Viewing the list of boards" do
@@ -20,17 +20,19 @@ feature "Board List" do
 end
 
 feature "Viewing board" do
-  background do
-    @board = FactoryGirl.create(:board)
-    slide = FactoryGirl.create(:slide, board: @board, layout_name: "Quarters")
+  let(:board_metadata) { AllAboard::Persistence::BoardPersistence::BoardMetadata.create!(name: "Board Name") }
+  let(:board) { AllAboard::Board.find(board_metadata.id) }
 
-    slide.perspective_assignments.create!(
+  background do
+    slide_metadata = board_metadata.slides.create!(layout_name: "Quarters")
+
+    slide_metadata.perspective_assignments.create!(
       source_name: "BasicTestSource",
       perspective_name: "A Test Perspective",
-      position: 2
+       position: 2
     )
 
-    slide.perspective_assignments.create!(
+    slide_metadata.perspective_assignments.create!(
       source_name: "BasicTestSource",
       perspective_name: "A Perspective With Configuration Data",
       position: 1
@@ -44,7 +46,7 @@ feature "Viewing board" do
   end
 
   scenario "viewing a board with slides with layouts" do
-    visit AllAboard::Engine.routes.url_helpers.board_path(@board)
+    visit AllAboard::Engine.routes.url_helpers.board_path(board)
 
     within("#pane-2") do
       expect(page).to have_content("Markup from a test perspective")

@@ -1,18 +1,12 @@
-class AllAboard::Slide < ActiveRecord::Base
-  belongs_to :board
-  has_many :perspective_assignments
+class AllAboard::Slide
+  include AllAboard::RoutableTo
 
-  validates :board, :position, presence: true
+  attr_reader :id, :layout_name, :position, :perspective_assignments
 
-  after_initialize :ensure_positioned
-
-  attr_accessible :position, :layout_name
-
-protected
-
-  def ensure_positioned
-    if board.present? && position.blank?
-      self.position = board.slides.count + 1
-    end
+  def initialize(attributes = {})
+    @id = attributes[:id]
+    @layout_name = attributes[:layout_name]
+    @position = attributes[:position]
+    @perspective_assignments = attributes[:perspective_assignments] || []
   end
 end

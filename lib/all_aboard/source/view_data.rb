@@ -1,5 +1,5 @@
 module AllAboard
-  module Source::Persistence
+  module Source::ViewData
     def persist_data(data)
       redis.set("data", data.to_json)
     end

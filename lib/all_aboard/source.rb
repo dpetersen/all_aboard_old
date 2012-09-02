@@ -1,9 +1,9 @@
 module AllAboard
   class Source
-    extend Persistence
-    extend Jobs
-    extend Perspectives
     include Configuration
+    extend Jobs
+    extend ViewData
+    extend Perspectives
 
     def self.filesystem_name
       self.name.underscore

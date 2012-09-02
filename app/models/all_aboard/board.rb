@@ -1,7 +1,12 @@
-class AllAboard::Board < ActiveRecord::Base
-  has_many :slides
+class AllAboard::Board
+  include Persistence::BoardPersistence
+  include RoutableTo
 
-  validates :name, presence: true
+  attr_reader :id, :name, :slides
 
-  attr_accessible :name
+  def initialize(attributes = {})
+    @id = attributes[:id]
+    @name = attributes[:name]
+    @slides = attributes[:slides] || []
+  end
 end

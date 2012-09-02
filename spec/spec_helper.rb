@@ -11,13 +11,6 @@ require 'capybara'
 require 'launchy'
 require 'pry'
 require 'shoulda-matchers'
-require 'factory_girl'
-
-FactoryGirl.definition_file_paths = [
-  File.join(File.dirname(__FILE__), "factories")
-]
-FactoryGirl.find_definitions
-
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
