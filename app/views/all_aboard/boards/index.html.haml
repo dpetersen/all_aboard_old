@@ -4,3 +4,7 @@
 %ul.unstyled
   - @boards.each do |board|
     %li= link_to board.name, board_path(board)
+
+= simple_form_for AllAboard::Board.new do |f|
+  = f.input :name
+  = f.button :submit, "Create"
