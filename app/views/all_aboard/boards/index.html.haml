@@ -1,3 +1,6 @@
-%ul
+.page-header
+  %h1 Boards
+
+%ul.unstyled
   - @boards.each do |board|
     %li= link_to board.name, board_path(board)
