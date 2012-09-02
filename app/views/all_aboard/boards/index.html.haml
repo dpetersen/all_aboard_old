@@ -5,6 +5,9 @@
   - @boards.each do |board|
     %li= link_to board.name, board_path(board)
 
-= simple_form_for AllAboard::Board.new do |f|
-  = f.input :name
-  = f.button :submit, "Create"
+.well.span3
+  = simple_form_for AllAboard::Board.new do |f|
+    %legend Create Board
+
+    = f.input :name
+    = f.button :submit, "Create", class: "btn btn-primary"
