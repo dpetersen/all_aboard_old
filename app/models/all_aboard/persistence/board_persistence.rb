@@ -1,5 +1,6 @@
 module AllAboard::Persistence::BoardPersistence
   extend ActiveSupport::Concern
+  include AllAboard::Persistable
 
   module ClassMethods
     def all
@@ -25,13 +26,13 @@ module AllAboard::Persistence::BoardPersistence
     def slides_for_board_metadata(board_metadata)
       board_metadata.slides.inject([]) do |a, slide_metadata|
         attributes = HashWithIndifferentAccess.new(slide_metadata.attributes)
-        attributes[:perspective_assignments] = perspective_assignemnts_for_slide_metadata(slide_metadata)
+        attributes[:perspective_assignments] = perspective_assignments_for_slide_metadata(slide_metadata)
         a << AllAboard::Slide.new(attributes)
         a
       end
     end
 
-    def perspective_assignemnts_for_slide_metadata(slide_metadata)
+    def perspective_assignments_for_slide_metadata(slide_metadata)
       slide_metadata.perspective_assignments.inject([]) do |a, perspective_assignment_metadata|
         attributes = HashWithIndifferentAccess.new(perspective_assignment_metadata.attributes)
         a << AllAboard::PerspectiveAssignment.new(attributes)
@@ -39,22 +40,15 @@ module AllAboard::Persistence::BoardPersistence
     end
   end
 
-  def save
-    metadata_record.update_attributes(name: name).tap do |did_save|
-      @id = metadata_record.id if did_save
-    end
-  end
-
-  def errors
-    metadata_record.errors
-  end
-
 protected
 
-  def metadata_record
-    @metadata_record ||= (
-      AllAboard::Persistence::BoardMetadata.find_by_id(@id) ||
-      AllAboard::Persistence::BoardMetadata.new
-    )
+  def attribute_translation
+    {
+      name: name
+    }
+  end
+
+  def metadata_class
+    AllAboard::Persistence::BoardMetadata
   end
 end
