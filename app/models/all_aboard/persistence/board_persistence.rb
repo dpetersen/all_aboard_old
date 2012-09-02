@@ -1,50 +1,15 @@
 module AllAboard::Persistence::BoardPersistence
   extend ActiveSupport::Concern
 
-  class BoardMetadata < ActiveRecord::Base
-    self.table_name = "all_aboard_boards"
-    has_many(
-      :slides,
-      class_name: "AllAboard::Persistence::BoardPersistence::SlideMetadata",
-      foreign_key: "board_id"
-    )
-
-    validates :name, presence: true
-
-    attr_accessible :name
-  end
-
-  class SlideMetadata < ActiveRecord::Base
-    self.table_name = "all_aboard_slides"
-
-    has_many(
-      :perspective_assignments,
-      class_name: "AllAboard::Persistence::BoardPersistence::PerspectiveAssignmentsMetadata",
-      foreign_key: "slide_id"
-    )
-
-    validates :board_id, :layout_name, presence: true
-
-    attr_accessible :layout_name
-  end
-
-  class PerspectiveAssignmentsMetadata < ActiveRecord::Base
-    self.table_name = "all_aboard_perspective_assignments"
-
-    validates :slide_id, :source_name, :perspective_name, :position, presence: true
-
-    attr_accessible :source_name, :perspective_name, :position
-  end
-
   module ClassMethods
     def all
-      BoardMetadata.all.map do |board_metadata|
+      AllAboard::Persistence::BoardMetadata.all.map do |board_metadata|
         board_from_board_metadata(board_metadata)
       end
     end
 
     def find(id)
-      board_metadata = BoardMetadata.find(id)
+      board_metadata = AllAboard::Persistence::BoardMetadata.find(id)
       board_from_board_metadata(board_metadata)
     end
 
@@ -87,6 +52,9 @@ module AllAboard::Persistence::BoardPersistence
 protected
 
   def metadata_record
-    @metadata_record ||= (BoardMetadata.find_by_id(@id) || BoardMetadata.new)
+    @metadata_record ||= (
+      AllAboard::Persistence::BoardMetadata.find_by_id(@id) ||
+      AllAboard::Persistence::BoardMetadata.new
+    )
   end
 end

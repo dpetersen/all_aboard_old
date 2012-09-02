@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "Board List" do
   background do
-    AllAboard::Persistence::BoardPersistence::BoardMetadata.create!(name: "A Test Board")
+    AllAboard::Persistence::BoardMetadata.create!(name: "A Test Board")
   end
 
   scenario "Viewing the list of boards" do
@@ -20,7 +20,7 @@ feature "Board List" do
 end
 
 feature "Viewing board" do
-  let(:board_metadata) { AllAboard::Persistence::BoardPersistence::BoardMetadata.create!(name: "Board Name") }
+  let(:board_metadata) { AllAboard::Persistence::BoardMetadata.create!(name: "Board Name") }
   let(:board) { AllAboard::Board.find(board_metadata.id) }
 
   background do

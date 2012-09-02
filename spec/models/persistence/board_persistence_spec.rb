@@ -10,7 +10,7 @@ describe AllAboard::Persistence::BoardPersistence do
     end
 
     context "with an item in the database" do
-      before { AllAboard::Persistence::BoardPersistence::BoardMetadata.create!(name: "Test Name") }
+      before { AllAboard::Persistence::BoardMetadata.create!(name: "Test Name") }
 
       its(:length) { should eq(1) }
 
@@ -32,7 +32,7 @@ describe AllAboard::Persistence::BoardPersistence do
 
     context "when the record exists" do
       let!(:board_metadata) do
-        AllAboard::Persistence::BoardPersistence::BoardMetadata.create!(name: "Test Name")
+        AllAboard::Persistence::BoardMetadata.create!(name: "Test Name")
       end
       let(:board) { AllAboard::Board.find(board_metadata.id) }
       subject { board }
@@ -91,11 +91,11 @@ describe AllAboard::Persistence::BoardPersistence do
         it { should be_true }
 
         context "after save" do
-          let(:latest_record) { AllAboard::Persistence::BoardPersistence::BoardMetadata.first }
+          let(:latest_record) { AllAboard::Persistence::BoardMetadata.first }
           before { save }
 
           it "persists a record" do
-            expect(AllAboard::Persistence::BoardPersistence::BoardMetadata.count).to eq(1)
+            expect(AllAboard::Persistence::BoardMetadata.count).to eq(1)
           end
 
           context "the persisted record" do
@@ -116,7 +116,7 @@ describe AllAboard::Persistence::BoardPersistence do
         it { should be_false }
 
         it "does not persist a record" do
-          expect(AllAboard::Persistence::BoardPersistence::BoardMetadata.count).to eq(0)
+          expect(AllAboard::Persistence::BoardMetadata.count).to eq(0)
         end
 
         it "doesn't leaves the model's id nil" do
@@ -127,7 +127,7 @@ describe AllAboard::Persistence::BoardPersistence do
 
     context "for an existing Board" do
       let(:board_metadata) do
-        AllAboard::Persistence::BoardPersistence::BoardMetadata.create!(name: "Test Name")
+        AllAboard::Persistence::BoardMetadata.create!(name: "Test Name")
       end
       let(:save) { board.save }
       subject { save }
@@ -141,7 +141,7 @@ describe AllAboard::Persistence::BoardPersistence do
           before { save }
 
           it "does not persist additional records" do
-            expect(AllAboard::Persistence::BoardPersistence::BoardMetadata.count).to eq(1)
+            expect(AllAboard::Persistence::BoardMetadata.count).to eq(1)
           end
 
           it "updates the record" do
