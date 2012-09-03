@@ -5,6 +5,7 @@ describe "Managing a board" do
 
   it "sees a settings panel when clicking on the Settings link", :js do
     visit AllAboard::Engine.routes.url_helpers.board_path(board)
+    click_link "Settings"
     expect(find("#settings")).to be_visible
   end
 end
