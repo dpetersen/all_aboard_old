@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120401222233) do
+ActiveRecord::Schema.define(:version => 20120903223429) do
 
   create_table "all_aboard_boards", :force => true do |t|
     t.string   "name"
