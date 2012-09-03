@@ -1,6 +1,7 @@
-%h1= @board.name
+-#
+  %h1= @board.name
 
-%ol#slides
-  - @board.slides.each do |slide|
-    %li
-      = AllAboard::LayoutManager.instance.layout_for_name(slide.layout_name).new.render(slide)
+  %ol#slides
+    - @board.slides.each do |slide|
+      %li
+        = AllAboard::LayoutManager.instance.layout_for_name(slide.layout_name).new.render(slide)

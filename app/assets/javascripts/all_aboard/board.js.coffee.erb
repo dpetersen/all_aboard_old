@@ -1,0 +1,18 @@
+#= require jquery
+#= require bootstrap
+#= require handlebars
+#= require ember
+#= require ember-data
+#= require_self
+#= require ./app
+
+window.App = Ember.Application.create
+  # baseRoute is not an Ember feature, but a custom attribute that will be used
+  # in the router.  It is used so that Ember will preserve the URL wherever the
+  # consuming app mounted the engine. Otherwise Ember will reset the URL to:
+  # "/boards/1".
+  baseRoute: "<%= AllAboard::Engine.routes.url_helpers.root_path.chop %>"
+
+  # My karate coding style is not elegant, but it is awesome.  Store URL can't
+  # start with a slash.
+  storeRoute: "<%= AllAboard::Engine.routes.url_helpers.root_path.chop.reverse.chop.reverse %>"

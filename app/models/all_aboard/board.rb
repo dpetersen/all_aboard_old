@@ -1,4 +1,5 @@
 class AllAboard::Board
+  include ActiveModel::Serialization
   include Persistence::BoardPersistence
   include RoutableTo
 

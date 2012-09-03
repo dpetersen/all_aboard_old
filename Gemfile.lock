@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     all_aboard (0.0.1)
+      active_model_serializers
       ember-rails
       haml
       inherited_resources
