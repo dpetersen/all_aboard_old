@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 3.2.3"
   s.add_dependency 'jquery-rails'
   s.add_dependency 'inherited_resources'
+  s.add_dependency 'coffee-rails'
   s.add_dependency 'haml'
   s.add_dependency 'simple_form'
   s.add_dependency 'sidekiq'
@@ -38,4 +39,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'shoulda-matchers'
   s.add_development_dependency 'thin'
   s.add_development_dependency 'fakeredis'
+  s.add_development_dependency 'database_cleaner'
 end

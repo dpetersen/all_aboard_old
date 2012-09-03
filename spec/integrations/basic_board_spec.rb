@@ -11,49 +11,43 @@ feature "Board List" do
     expect(page).to have_content("A Test Board")
   end
 
-  scenario "Choosing a board" do
+  scenario "Choosing a board", :js do
     visit AllAboard::Engine.routes.url_helpers.boards_path
     click_link "A Test Board"
 
     expect(page).to have_content("A Test Board")
+    created_board = AllAboard::Persistence::BoardMetadata.first
+    expect(current_path).to eq(AllAboard::Engine.routes.url_helpers.board_path(created_board))
   end
 end
 
-feature "Viewing board" do
-  let(:board_metadata) { AllAboard::Persistence::BoardMetadata.create!(name: "Board Name") }
-  let(:board) { AllAboard::Board.find(board_metadata.id) }
+#feature "Viewing board" do
+#  let(:board_metadata) { AllAboard::Persistence::BoardMetadata.create!(name: "Board Name") }
+#  let(:board) { AllAboard::Board.find(board_metadata.id) }
 
-  background do
-    slide_metadata = board_metadata.slides.create!(layout_name: "Quarters")
+#  background do
+#    slide_metadata = board_metadata.slides.create!(layout_name: "Quarters")
 
-    slide_metadata.perspective_assignments.create!(
-      source_name: "BasicTestSource",
-      perspective_name: "A Test Perspective",
-       position: 2
-    )
+#    slide_metadata.perspective_assignments.create!(
+#      source_name: "BasicTestSource",
+#      perspective_name: "A Test Perspective",
+#       position: 2
+#    )
 
-    slide_metadata.perspective_assignments.create!(
-      source_name: "BasicTestSource",
-      perspective_name: "A Perspective With Configuration Data",
-      position: 1
-    )
+#    slide_metadata.perspective_assignments.create!(
+#      source_name: "BasicTestSource",
+#      perspective_name: "A Perspective With Configuration Data",
+#      position: 1
+#    )
 
-    AllAboard::ConfiguredAttribute.create!(
-      source_name: "BasicTestSource",
-      name: "a_source_value",
-      value: "value from database"
-    )
-  end
+#    AllAboard::ConfiguredAttribute.create!(
+#      source_name: "BasicTestSource",
+#      name: "a_source_value",
+#      value: "value from database"
+#    )
+#  end
 
-  scenario "viewing a board with slides with layouts" do
-    visit AllAboard::Engine.routes.url_helpers.board_path(board)
-
-    within("#pane-2") do
-      expect(page).to have_content("Markup from a test perspective")
-    end
-
-    within("#pane-1") do
-      expect(page).to have_content("Markup with a value from configuration: value from database")
-    end
-  end
-end
+#  scenario "viewing a board with slides with layouts" do
+#    visit AllAboard::Engine.routes.url_helpers.board_path(board)
+#  end
+#end

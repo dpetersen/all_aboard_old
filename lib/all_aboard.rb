@@ -1,4 +1,5 @@
 require 'inherited_resources'
+require 'coffee-rails'
 require 'haml'
 require 'simple_form'
 require 'sidekiq'
