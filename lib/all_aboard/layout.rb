@@ -1,9 +1,13 @@
 module AllAboard
   class Layout
-    def render(slide)
+    def render
       template = Tilt.new(path_to_template)
-      context = LayoutRenderingContext.new(slide)
+      context = LayoutRenderingContext.new(self)
       template.render(context)
+    end
+
+    def id
+      self.class.name.underscore
     end
 
   protected
@@ -14,13 +18,9 @@ module AllAboard
         "app",
         "layouts",
         "all_aboard",
-        layout_filesystem_name,
-        "#{layout_filesystem_name}.html.haml"
+        id,
+        "#{id}.html.haml"
       )
-    end
-
-    def layout_filesystem_name
-      self.class.name.underscore
     end
   end
 end

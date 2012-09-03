@@ -1,23 +1,32 @@
 require 'spec_helper'
 
-feature "Board List" do
-  background do
-    AllAboard::Persistence::BoardMetadata.create!(name: "A Test Board")
+describe "boards" do
+  let!(:board) { AllAboard::Persistence::BoardMetadata.create!(name: "A Test Board") }
+
+  describe "board list" do
+    it "can view a list of boards" do
+      visit AllAboard::Engine.routes.url_helpers.boards_path
+
+      expect(page).to have_content("A Test Board")
+    end
+
+    it "can choose a board from the list", :js do
+      visit AllAboard::Engine.routes.url_helpers.boards_path
+      click_link "A Test Board"
+
+      expect(page).to have_content("A Test Board")
+      created_board = AllAboard::Persistence::BoardMetadata.first
+      expect(current_path).to eq(AllAboard::Engine.routes.url_helpers.board_path(created_board))
+    end
   end
 
-  scenario "Viewing the list of boards" do
-    visit AllAboard::Engine.routes.url_helpers.boards_path
+  describe "viewing a board" do
+    before { board.slides.create!(layout_name: "Quarters") }
 
-    expect(page).to have_content("A Test Board")
-  end
-
-  scenario "Choosing a board", :js do
-    visit AllAboard::Engine.routes.url_helpers.boards_path
-    click_link "A Test Board"
-
-    expect(page).to have_content("A Test Board")
-    created_board = AllAboard::Persistence::BoardMetadata.first
-    expect(current_path).to eq(AllAboard::Engine.routes.url_helpers.board_path(created_board))
+    it "should see the expected layout", :js do
+      visit AllAboard::Engine.routes.url_helpers.board_path(board)
+      expect(page).to have_content("Quarters Layout")
+    end
   end
 end
 

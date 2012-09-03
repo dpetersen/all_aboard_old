@@ -22,4 +22,11 @@ describe AllAboard::Slide do
       its(:perspective_assignments) { should eq([ "assignment" ]) }
     end
   end
+
+  describe "#markup" do
+    let(:slide) { AllAboard::Slide.new(layout_name: "Quarters") }
+    subject { Capybara.string(slide.markup) }
+
+    it { should have_selector(".pane-1") }
+  end
 end

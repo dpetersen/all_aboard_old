@@ -9,14 +9,16 @@ describe TestLayout do
     it { should eq("TestLayout") }
   end
 
+  describe "#id" do
+    subject { TestLayout.new.id }
+    it { should eq("test_layout") }
+  end
+
   describe "#render" do
-    let(:slide) { double("Slide") }
+    let(:layout) { TestLayout.new }
     let(:layout_rendering_context) { double("Layout Rendering Context") }
     let(:template) { double(render: "Render Return Value") }
-
-    def render
-      TestLayout.new.render(slide)
-    end
+    subject(:render) { layout.render }
 
     before do
       Tilt.stub(new: template)
@@ -31,16 +33,19 @@ describe TestLayout do
       end
 
       it "creates a LayoutRenderingContext with the passed-in slide" do
-        AllAboard::LayoutRenderingContext.should_receive(:new).with(slide).and_return(layout_rendering_context)
+        AllAboard::LayoutRenderingContext.
+          should_receive(:new).
+          with(layout).
+          and_return(layout_rendering_context)
       end
 
       it "renders the template in the LayoutRenderingContext's context" do
-        template.should_receive(:render).with(layout_rendering_context)
+        template.
+          should_receive(:render).
+          with(layout_rendering_context)
       end
     end
 
-    it "returns the templates rendered string" do
-      expect(render).to eq("Render Return Value")
-    end
+    it { should eq("Render Return Value") }
   end
 end
