@@ -26,16 +26,18 @@ module AllAboard::Persistence::BoardPersistence
     def slides_for_board_metadata(board_metadata)
       board_metadata.slides.inject([]) do |a, slide_metadata|
         attributes = HashWithIndifferentAccess.new(slide_metadata.attributes)
-        attributes[:perspective_assignments] = perspective_assignments_for_slide_metadata(slide_metadata)
+        attributes[:panes] = panes_for_slide_metadata(slide_metadata)
         a << AllAboard::Slide.new(attributes)
         a
       end
     end
 
-    def perspective_assignments_for_slide_metadata(slide_metadata)
+    def panes_for_slide_metadata(slide_metadata)
       slide_metadata.perspective_assignments.inject([]) do |a, perspective_assignment_metadata|
         attributes = HashWithIndifferentAccess.new(perspective_assignment_metadata.attributes)
-        a << AllAboard::PerspectiveAssignment.new(attributes)
+        attributes[:source] = AllAboard::SourceManager.instance.source_for_name(attributes[:source_name])
+        a << AllAboard::Pane.new(attributes)
+        a
       end
     end
   end

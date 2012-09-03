@@ -48,14 +48,19 @@ describe BasicTestSource do
   end
 
   describe "#retrieve_data" do
+    subject { BasicTestSource.retrieve_data }
+
     context "when data has been persisted" do
       let(:stored_data) { { key_1: "one", key_2: "two" } }
       before { BasicTestSource.persist_data(stored_data) }
-      subject { BasicTestSource.retrieve_data }
 
       its(:length) { should eq(2) }
       it { expect(subject[:key_1]).to eq("one") }
       it { expect(subject[:key_2]).to eq("two") }
+    end
+
+    context "when no data has been persisted" do
+      it { should be_empty }
     end
   end
 end

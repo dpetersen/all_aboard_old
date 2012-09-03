@@ -58,21 +58,22 @@ describe AllAboard::Persistence::BoardPersistence do
           context "when child perspective assignments exist" do
             let!(:perspective_assignment_metadata) do
               slide_metadata.perspective_assignments.create!(
-                source_name: "Source Name",
-                perspective_name: "Perspective Name",
+                source_name: "BasicTestSource",
+                perspective_name: "A Test Perspective",
                 position: 2
               )
             end
-            let(:perspective_assignments) { slide.perspective_assignments }
-            subject { perspective_assignments }
+
+            let(:panes) { slide.panes }
+            subject { panes }
 
             its(:length) { should eq(1) }
 
-            describe "the instantiated perspective assignment" do
-              subject { perspective_assignments.first }
-              its(:source_name) { should eq("Source Name") }
-              its(:perspective_name) { should eq("Perspective Name") }
+            describe "the instantiated pane" do
+              subject { panes.first }
+
               its(:position) { should eq(2) }
+              its(:source) { should eq(BasicTestSource) }
             end
           end
         end

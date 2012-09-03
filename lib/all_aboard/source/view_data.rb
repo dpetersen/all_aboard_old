@@ -5,9 +5,10 @@ module AllAboard
     end
 
     def retrieve_data
-      HashWithIndifferentAccess.new(
-        JSON.parse(redis.get("data"))
-      )
+      data = redis.get("data")
+      return {} if data.nil?
+
+      HashWithIndifferentAccess.new(JSON.parse(data))
     end
 
   protected

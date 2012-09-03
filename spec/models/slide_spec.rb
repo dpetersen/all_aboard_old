@@ -6,7 +6,7 @@ describe AllAboard::Slide do
       subject { AllAboard::Slide.new }
       its(:layout_name) { should be_nil }
       its(:position) { should be_nil }
-      its(:perspective_assignments) { should be_empty }
+      its(:panes) { should be_empty }
     end
 
     context "passed attributes" do
@@ -14,19 +14,26 @@ describe AllAboard::Slide do
         AllAboard::Slide.new(
           layout_name: "Test Layout",
           position: 2,
-          perspective_assignments: [ "assignment" ]
+          panes: [ "pane" ]
         )
       end
       its(:layout_name) { should eq("Test Layout") }
       its(:position) { should eq(2) }
-      its(:perspective_assignments) { should eq([ "assignment" ]) }
+      its(:panes) { should eq([ "pane" ]) }
     end
   end
 
   describe "#markup" do
-    let(:slide) { AllAboard::Slide.new(layout_name: "Quarters") }
     subject { Capybara.string(slide.markup) }
 
-    it { should have_selector(".pane-1") }
+    context "with a valid layout_name" do
+      let(:slide) { AllAboard::Slide.new(layout_name: "Quarters") }
+      it { should have_selector(".pane-1") }
+    end
+
+    context "with an unknown layout_name" do
+      let(:slide) { AllAboard::Slide.new(layout_name: "Bad") }
+      it { should have_content("Unknown Layout Name 'Bad'") }
+    end
   end
 end

@@ -1,3 +1,4 @@
 class AllAboard::SlideSerializer < ActiveModel::Serializer
-  attributes :markup
+  attributes :id, :markup
+  has_many :panes, serializer: AllAboard::PaneSerializer
 end

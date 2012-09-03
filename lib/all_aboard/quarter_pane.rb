@@ -1,5 +1,5 @@
 module AllAboard
-  class QuarterPane < Pane
+  class QuarterPane < PaneDefinition
     def width
       400
     end

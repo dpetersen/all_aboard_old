@@ -8,7 +8,7 @@ describe AllAboard::Perspective do
     it { should eq("Perspective Name") }
   end
 
-  describe "#template_for_pane" do
+  describe "#template_for_pane_definition" do
     let(:perspective) { AllAboard::Perspective.new(BasicTestSource, "Perspective Name") }
     let(:template) { double("Tilt Template") }
     let(:multipath_finder) { double("Multipath Finder", find_file: "found/file/path") }
@@ -16,7 +16,7 @@ describe AllAboard::Perspective do
       AllAboard::MultipathFinder.stub(new: multipath_finder)
       Tilt.stub(new: template)
     end
-    subject { perspective.template_for_pane(AllAboard::QuarterPane) }
+    subject { perspective.template_for_pane_definition(AllAboard::QuarterPane) }
 
     it { should eq(template) }
 

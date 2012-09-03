@@ -9,4 +9,24 @@ describe AllAboard::SlideSerializer do
     subject { hash[:markup] }
     it { should be_present }
   end
+
+  describe "associated panes" do
+    subject { hash[:panes] }
+
+    context "when not present" do
+      let(:slide) { AllAboard::Slide.new }
+      it { should be_empty }
+    end
+
+    context "when present" do
+      let(:pane) { AllAboard::Pane.new(position: 2) }
+      let(:slide) { AllAboard::Slide.new(panes: [ pane ]) }
+
+      it { should_not be_empty }
+
+      it "includes the pane" do
+        expect(hash[:panes].first[:position]).to eq(2)
+      end
+    end
+  end
 end
