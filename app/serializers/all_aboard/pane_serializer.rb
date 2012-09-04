@@ -1,5 +1,5 @@
 class AllAboard::PaneSerializer < ActiveModel::Serializer
-  attributes :id, :position, :source_data
+  attributes :id, :position, :source_data, :template_markup
 
   # ember-data goes on a fetching frenzy if the objects don't have ids, even if
   # they're embedded. At least it seems that way, and I can't figure it out.

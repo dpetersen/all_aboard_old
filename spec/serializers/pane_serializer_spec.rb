@@ -2,13 +2,19 @@ require 'spec_helper'
 
 describe AllAboard::PaneSerializer do
   let(:source) { BasicTestSource }
-  let(:pane) { AllAboard::Pane.new(position: 2, source: source) }
+  let(:perspective) { BasicTestSource.perspective_for_name("A Test Perspective") }
+  let(:pane) { AllAboard::Pane.new(position: 2, source: source, perspective: perspective) }
   let(:hash) { AllAboard::PaneSerializer.new(pane).as_json[:pane] }
   subject { hash }
 
   describe "position" do
     subject { hash[:position] }
     it { should eq(2) }
+  end
+
+  describe "template_markup" do
+    subject { hash[:template_markup] }
+    it { should eq("Markup with {{handlebars}} from a test perspective") }
   end
 
   describe "source_data" do

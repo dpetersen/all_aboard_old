@@ -21,11 +21,20 @@ describe "boards" do
   end
 
   describe "viewing a board" do
-    before { board.slides.create!(layout_name: "Quarters") }
+    before do
+      slide = board.slides.create!(layout_name: "Quarters")
+      slide.perspective_assignments.create!(
+        source_name: "BasicTestSource",
+        perspective_name: "A Test Perspective With Data",
+        position: 1
+      )
+      BasicTestSource.persist_data(test: "from persistence")
+    end
 
     it "should see the expected layout", :js do
       visit AllAboard::Engine.routes.url_helpers.board_path(board)
       expect(page).to have_content("Quarters Layout")
+      expect(page).to have_content("I am the test view with data: from persistence")
     end
   end
 end

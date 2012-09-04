@@ -8,7 +8,7 @@ class BasicTestSource < AllAboard::Source
   has_job TestFourTimesDailyJob, :four_daily
 
   perspective("A Test Perspective")
-  perspective("A Perspective With Configuration Data")
+  perspective("A Test Perspective With Data")
 end
 
 AllAboard::SourceManager.instance.register_source(BasicTestSource)

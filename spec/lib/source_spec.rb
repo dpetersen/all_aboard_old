@@ -13,14 +13,7 @@ describe BasicTestSource do
 
   describe ".perspective_names" do
     subject { BasicTestSource.perspective_names }
-    it { should eq([ "A Test Perspective", "A Perspective With Configuration Data" ]) }
-  end
-
-  describe "#render" do
-    context "passed an existing perspective name" do
-      subject { BasicTestSource.new.render("A Test Perspective", AllAboard::QuarterPane) }
-      it { should eq("Markup from a test perspective") }
-    end
+    it { should eq([ "A Test Perspective", "A Test Perspective With Data" ]) }
   end
 
   describe ".configurable_attributes" do
