@@ -2,6 +2,7 @@ module AllAboard
   module Source::ViewData
     def persist_data(data)
       redis.set("data", data.to_json)
+      Update.persist(self, data)
     end
 
     def retrieve_data

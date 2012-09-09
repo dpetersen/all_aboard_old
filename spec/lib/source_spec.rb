@@ -40,6 +40,17 @@ describe BasicTestSource do
     end
   end
 
+  describe "#persist_data" do
+    let(:data) { "test data" }
+    after { BasicTestSource.persist_data(data) }
+
+    it "persists an update with itself and its data" do
+      AllAboard::Update.
+        should_receive(:persist).
+        with(BasicTestSource, data)
+    end
+  end
+
   describe "#retrieve_data" do
     subject { BasicTestSource.retrieve_data }
 
