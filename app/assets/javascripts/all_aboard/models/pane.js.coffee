@@ -7,4 +7,4 @@ App.Pane = DS.Model.extend
     markup = @get("templateMarkup")
     context = @get("sourceData.dataObject")
     compiled = Handlebars.compile(markup)(context)
-  ).property("sourceData", "templateMarkup").cacheable()
+  ).property("sourceData.dataObject", "templateMarkup").cacheable()

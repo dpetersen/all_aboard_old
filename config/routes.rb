@@ -9,5 +9,7 @@ AllAboard::Engine.routes.draw do
   # These are nested Ember routes
   match "/boards/:id/*path" => "boards#show"
 
+  resources :updates
+
   root to: "boards#index"
 end

@@ -7,12 +7,16 @@ describe AllAboard::BoardSerializer do
   describe "attributes" do
     let(:board) { AllAboard::Board.new(id: 19, name: "Test Name") }
 
-    it "includes the id" do
-      expect(hash[:id]).to eq(19)
+    its([:id]) { should eq(19) }
+    its([:name]) { should eq("Test Name") }
+
+    context "with no persisted updates" do
+      its([:latest_timestamp]) { should be_nil }
     end
 
-    it "includes the name" do
-      expect(hash[:name]).to eq("Test Name")
+    context "with persisted updates" do
+      before { AllAboard::Update.stub(latest_timestamp: 1) }
+      its([:latest_timestamp]) { should eq(1) }
     end
   end
 

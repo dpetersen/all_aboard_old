@@ -3,7 +3,7 @@ DS.attr.transforms.readOnlyObject = {
     object
 
   to: (deserialized) ->
-    console.error "I don't know what happened, but I know it isn't good."
+    deserialized
 }
 
 App.store = DS.Store.create

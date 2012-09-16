@@ -11,6 +11,25 @@ describe AllAboard::Update do
     AllAboard::Update.persist(source_class, data)
   end
 
+  describe ".latest_timestamp" do
+    subject { AllAboard::Update.latest_timestamp }
+
+    context "when there are no persisted updates" do
+      it { should be_nil }
+    end
+
+    context "with a persisted update" do
+      let(:earlier) { 2.minutes.ago }
+      before do
+        Timecop.freeze(earlier) do
+          persist(UpdateTestClassOne, "Test Data")
+        end
+      end
+
+      it { should eq(earlier.to_i) }
+    end
+  end
+
   describe ".persist" do
     let(:uuid) { "Test UUID" }
     let(:update_count) { AllAboard.redis.zcount("updates", "-inf", "+inf") }
