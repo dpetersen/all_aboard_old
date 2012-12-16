@@ -5,9 +5,6 @@ source "http://rubygems.org"
 # development dependencies will be added by default to the :development group.
 gemspec
 
-# Current version is 0.4 and it's three months old.  I need +/-inf support.
-gem "fakeredis", github: "guilleiguaran/fakeredis"
-
 # jquery-rails is used by the dummy application
 gem "jquery-rails"
 
