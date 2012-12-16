@@ -28,9 +28,9 @@ describe BasicTestSource do
       it { should eq({ a_source_value: nil, a_second_source_value: nil }) }
     end
 
-    context "when a ConfiguredAttributes exists" do
+    context "when a SourceConfiguredAttributes exists" do
       before do
-        AllAboard::ConfiguredAttribute.create!(
+        AllAboard::SourceConfiguredAttribute.create!(
           source_name: "BasicTestSource",
           name: "a_second_source_value",
           value: "Some Saved Value"

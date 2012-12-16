@@ -16,7 +16,7 @@ module AllAboard
   protected
 
     def configured_attributes
-      ConfiguredAttribute.where(source_name: self.class.name)
+      SourceConfiguredAttribute.where(source_name: self.class.name)
     end
 
     def configured_attribute_for(attribute)

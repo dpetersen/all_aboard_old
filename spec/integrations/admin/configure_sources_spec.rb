@@ -30,7 +30,7 @@ end
 
 feature "update a configured source" do
   background do
-    AllAboard::ConfiguredAttribute.create!(source_name: "BasicTestSource", name: "a_source_value", value: "First Value")
+    AllAboard::SourceConfiguredAttribute.create!(source_name: "BasicTestSource", name: "a_source_value", value: "First Value")
   end
 
   scenario "update a source that's already been configured" do

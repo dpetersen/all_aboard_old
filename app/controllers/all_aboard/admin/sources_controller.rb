@@ -11,10 +11,10 @@ module AllAboard
 
     def update
       params[:configurable_attributes].each do |attribute_name, attribute_value|
-        if configured_attribute = ConfiguredAttribute.where(source_name: @source.name, name: attribute_name).first
+        if configured_attribute = SourceConfiguredAttribute.where(source_name: @source.name, name: attribute_name).first
           configured_attribute.update_attributes(value: attribute_value)
         else
-          ConfiguredAttribute.create!(
+          SourceConfiguredAttribute.create!(
             source_name: @source.name,
             name: attribute_name,
             value: attribute_value

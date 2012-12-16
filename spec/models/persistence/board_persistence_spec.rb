@@ -63,6 +63,13 @@ describe AllAboard::Persistence::BoardPersistence do
                 position: 2
               )
             end
+            before do
+              AllAboard::PerspectiveAssignmentConfiguredAttribute.create!(
+                perspective_assignment_id: perspective_assignment_metadata.id,
+                name: "test name",
+		value: "test value"
+              )
+            end
 
             let(:panes) { slide.panes }
             subject { panes }
@@ -70,11 +77,17 @@ describe AllAboard::Persistence::BoardPersistence do
             its(:length) { should eq(1) }
 
             describe "the instantiated pane" do
-              subject { panes.first }
+              let(:pane) { panes.first }
+              subject { pane }
 
               its(:position) { should eq(2) }
               its(:source) { should eq(BasicTestSource) }
               its(:perspective) { should eq(BasicTestSource.perspective_for_name("A Test Perspective")) }
+
+	      describe "the associated configuration" do
+                subject { pane.configuration }
+                its(["test name"]) { should eq("test value") }
+              end
             end
           end
         end

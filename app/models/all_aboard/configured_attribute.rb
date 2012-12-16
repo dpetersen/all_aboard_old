@@ -1,4 +1,4 @@
 class AllAboard::ConfiguredAttribute < ActiveRecord::Base
-  validates :source_name, :name, :value, presence: true
-  attr_accessible :source_name, :name, :value
+  validates :name, :value, presence: true
+  attr_accessible :name, :value
 end

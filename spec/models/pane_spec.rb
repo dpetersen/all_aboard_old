@@ -15,13 +15,15 @@ describe AllAboard::Pane do
           position: 2,
           source: "source",
           perspective: "perspective",
-          template_markup: "template_markup"
+          template_markup: "template_markup",
+          configuration: "configuration"
         )
       end
 
       its(:position) { should eq(2) }
       its(:source) { should eq("source") }
       its(:perspective) { should eq("perspective") }
+      its(:configuration) { should eq("configuration") }
     end
   end
 
