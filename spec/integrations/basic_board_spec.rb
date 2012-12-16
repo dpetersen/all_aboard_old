@@ -15,8 +15,7 @@ describe "boards" do
       click_link "A Test Board"
 
       expect(page).to have_content("A Test Board")
-      created_board = AllAboard::Persistence::BoardMetadata.first
-      expect(current_path).to eq(AllAboard::Engine.routes.url_helpers.board_path(created_board))
+      expect(current_path).to eq(AllAboard::Engine.routes.url_helpers.board_path(board))
     end
   end
 
