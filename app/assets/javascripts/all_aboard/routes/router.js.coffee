@@ -16,3 +16,4 @@ App.Router = Ember.Router.extend
         route: "/:board_id"
         connectOutlets: (router, board) ->
           router.get("applicationController").connectOutlet("board", board)
+        showBoardList: Ember.Router.transitionTo("boards.index")
