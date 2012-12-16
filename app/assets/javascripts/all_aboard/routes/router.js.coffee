@@ -1,19 +1,18 @@
 App.Router = Ember.Router.extend
   location: "history"
+  rootURL: App.baseRoute
 
   root: Ember.Route.extend
-    board: Ember.Route.extend
-      # FIXME: Cannot get rootURL to work to save my life.
-      route: "#{App.baseRoute}/boards/:board_id"
-      connectOutlets: (router, board) ->
-        router.get("applicationController").connectOutlet("board", board)
+    boards: Ember.Route.extend
+      route: "/boards"
 
       index: Ember.Route.extend
         route: "/"
-        showSettings: (router) ->
-          router.transitionTo("settings")
-
-      settings: Ember.Route.extend
-        route: "/settings"
         connectOutlets: (router) ->
-          router.get("boardController").connectOutlet("settings", "settings")
+          router.get("applicationController").connectOutlet("boards", App.store.findAll(App.Board))
+        showBoard: Ember.Route.transitionTo("board")
+
+      board: Ember.Route.extend
+        route: "/:board_id"
+        connectOutlets: (router, board) ->
+          router.get("applicationController").connectOutlet("board", board)

@@ -4,9 +4,8 @@ describe "boards" do
   let!(:board) { AllAboard::Persistence::BoardMetadata.create!(name: "A Test Board") }
 
   describe "board list" do
-    it "can view a list of boards" do
+    it "can view a list of boards", :js do
       visit AllAboard::Engine.routes.url_helpers.boards_path
-
       expect(page).to have_content("A Test Board")
     end
 
