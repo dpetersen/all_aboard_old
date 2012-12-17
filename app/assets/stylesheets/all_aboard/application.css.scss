@@ -11,3 +11,10 @@
  *= require bootstrap
  *= require_self
 */
+
+@import "bourbon";
+@import "neat";
+
+#all-aboard {
+  @include outer-container;
+}

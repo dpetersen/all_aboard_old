@@ -1,6 +1,8 @@
 require 'inherited_resources'
 require 'coffee-rails'
 require 'haml'
+require 'sass'
+require 'neat'
 require 'simple_form'
 require 'sidekiq'
 require 'redis'
