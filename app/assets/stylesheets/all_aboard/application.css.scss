@@ -12,6 +12,12 @@
  *= require_self
 */
 
+// Override bootstrap's icon sprite path so I don't have to remember to tweak
+// it every time I want to update bootstrap
+[class^="icon-"],[class*=" icon-"] {
+  background-image: url("../glyphicons-halflings.png")
+}
+
 @import "bourbon";
 @import "neat";
 
