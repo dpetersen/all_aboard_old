@@ -1,6 +1,6 @@
-<form class="form-inline">
+<form id="new-board" class="form-inline">
   <legend>Add Board</legend>
 
   {{view Ember.TextField valueBinding="name" id="name" placeholder="Board Name" required="true" class="input-medium"}}
-  <button {{action createBoard target="controller"}} type="button" class="btn">Add</button>
+  <button {{action createBoard target="controller"}} type="submit" class="btn">Add</button>
 </form>

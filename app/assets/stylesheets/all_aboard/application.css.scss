@@ -24,3 +24,7 @@
 #all-aboard {
   @include outer-container;
 }
+
+#new-board {
+  @include span-columns(3);
+}
