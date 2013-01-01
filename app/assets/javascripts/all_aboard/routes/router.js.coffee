@@ -10,6 +10,8 @@ App.Router = Ember.Router.extend
         route: "/"
         connectOutlets: (router) ->
           router.get("applicationController").connectOutlet("boards", App.store.findAll(App.Board))
+          router.get("boardsController").connectOutlet("newBoard", "newBoard")
+          router.get("newBoardController").initializeNewBoard()
         showBoard: Ember.Route.transitionTo("board")
 
       board: Ember.Route.extend

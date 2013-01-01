@@ -1,7 +1,9 @@
 <ol>
-  {{#each board in arrangedContent}}
+  {{#each board in persistedBoards}}
     <li>
       <a href="#" {{action showBoard board}}>{{board.name}}</a>
     </li>
   {{/each}}
 </ol>
+
+{{outlet newBoard}}

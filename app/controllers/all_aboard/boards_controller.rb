@@ -1,6 +1,7 @@
 class AllAboard::BoardsController < ApplicationController
   layout 'all_aboard/application'
 
+  skip_before_filter :verify_authenticity_token
   inherit_resources
   actions :create
 
@@ -21,6 +22,8 @@ class AllAboard::BoardsController < ApplicationController
   end
 
   def create
-    create! { board_path(@board) }
+    create! do |format|
+      format.json { render json: resource, serializer: AllAboard::BoardSerializer }
+    end
   end
 end

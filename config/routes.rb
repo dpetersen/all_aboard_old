@@ -5,10 +5,10 @@ AllAboard::Engine.routes.draw do
     resources :sources
   end
 
-  resources :boards, only: [ :index, :show ]
+  resources :boards, only: [ :index, :show, :create ]
   # These are nested Ember routes
-  match "/boards/:id/*path" => "boards#show"
-  match "/boards/*path" => "boards#index"
+  match "/boards/:id/*path" => "boards#show", via: :get
+  match "/boards/*path" => "boards#index", via: :get
 
   resources :updates
 
