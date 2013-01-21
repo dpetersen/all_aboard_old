@@ -1,12 +1,11 @@
 App.BoardController = Ember.ObjectController.extend
-  boardLoaded: ( ->
-    if @get("isLoaded")
-      @setUpdateTimer()
-  ).observes("isLoaded")
-
   setUpdateTimer: ->
-    setTimeout((=> @requestUpdate()), 2000)
+    @timeout = setTimeout((=> @requestUpdate()), 2000)
 
   requestUpdate: ->
-    App.SourceData.getUpdatesFor(@content)
-    @setUpdateTimer()
+    if @get("isLoaded")
+      App.SourceData.getUpdatesFor(@content)
+      @setUpdateTimer()
+
+  clearUpdateTimer: ->
+    clearTimeout(@timeout)

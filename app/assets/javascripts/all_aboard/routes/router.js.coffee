@@ -18,6 +18,10 @@ App.HomeRoute = Em.Route.extend
 App.BoardRoute = Em.Route.extend
   setupController: (controller, board) ->
     controller.set("content", board)
+  enter: ->
+    @controllerFor("board").setUpdateTimer()
+  exit: ->
+    @controllerFor("board").clearUpdateTimer()
 
 App.BoardsRoute = Em.Route.extend
   setupController: (controller) ->
