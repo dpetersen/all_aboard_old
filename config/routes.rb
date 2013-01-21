@@ -6,8 +6,8 @@ AllAboard::Engine.routes.draw do
   end
 
   resources :boards, only: [ :index, :show, :create ]
-  # These are nested Ember routes
-  match "/boards/:id/*path" => "boards#show", via: :get
+  # These are nested Ember routes.  They must exist to allow deep linking.
+  match "/board/*path" => "boards#index", via: :get
   match "/boards/*path" => "boards#index", via: :get
 
   resources :updates

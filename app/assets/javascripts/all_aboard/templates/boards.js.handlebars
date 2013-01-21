@@ -1,9 +1,9 @@
 <ol>
   {{#each board in persistedBoards}}
     <li>
-      <a href="#" {{action showBoard board}}>{{board.name}}</a>
+      {{#linkTo "board" board}}{{board.name}}{{/linkTo}}
     </li>
   {{/each}}
 </ol>
 
-{{outlet newBoard}}
+{{outlet}}

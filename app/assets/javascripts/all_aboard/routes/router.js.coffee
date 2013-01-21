@@ -1,21 +1,28 @@
-App.Router = Ember.Router.extend
-  location: "history"
-  rootURL: App.baseRoute
+App.Router.reopen
+  location: 'history'
+  # TODO: This should be dynamic, based on where the engine is actually mounted.
+  # Should be able to use this in place of the "/all_aboard" calls below.
+  # rootURL: '/all_aboard'
 
-  root: Ember.Route.extend
-    boards: Ember.Route.extend
-      route: "/boards"
+App.Router.map (match) ->
+  @route("home", path: "/all_aboard/")
+  @resource("board", path: "/all_aboard/board/:board_id")
+  @resource("boards", path: "/all_aboard/boards", ->
+    @route("new")
+  )
 
-      index: Ember.Route.extend
-        route: "/"
-        connectOutlets: (router) ->
-          router.get("applicationController").connectOutlet("boards", App.store.findAll(App.Board))
-          router.get("boardsController").connectOutlet("newBoard", "newBoard")
-          router.get("newBoardController").initializeNewBoard()
-        showBoard: Ember.Route.transitionTo("board")
+App.HomeRoute = Em.Route.extend
+  redirect: ->
+    @transitionTo("boards.new")
 
-      board: Ember.Route.extend
-        route: "/:board_id"
-        connectOutlets: (router, board) ->
-          router.get("applicationController").connectOutlet("board", board)
-        showBoardList: Ember.Router.transitionTo("boards.index")
+App.BoardRoute = Em.Route.extend
+  setupController: (controller, board) ->
+    controller.set("content", board)
+
+App.BoardsRoute = Em.Route.extend
+  setupController: (controller) ->
+    controller.set("content", App.Board.find())
+
+App.BoardsNewRoute = Em.Route.extend
+  setupController: (controller) ->
+    controller.initializeNewBoard()

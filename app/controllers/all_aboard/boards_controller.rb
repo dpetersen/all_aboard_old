@@ -7,16 +7,16 @@ class AllAboard::BoardsController < ApplicationController
 
   def index
     respond_to do |format|
+      # When a user hits this route directly, we want to render the main Ember app...
       format.html {}
+      # ... but still let them fetch the boards list JSON.
       format.json { render json: collection, each_serializer: AllAboard::BoardSerializer }
     end
   end
 
   def show
     respond_to do |format|
-      # When a user hits this route directly, we want to render the main Ember app...
       format.html { render :index }
-      # ... but still let them fetch the individual record.
       format.json { render json: resource, serializer: AllAboard::BoardSerializer }
     end
   end
