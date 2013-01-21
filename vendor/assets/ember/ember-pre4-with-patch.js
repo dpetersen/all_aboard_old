@@ -13174,14 +13174,14 @@ Ember.EventDispatcher = Ember.Object.extend(
       }, this);
     });
 
+    // PATCHED FROM https://github.com/emberjs/ember.js/pull/1571/files
     rootElement.delegate('[data-ember-action]', event + '.ember', function(evt) {
       return Ember.handleErrors(function() {
         var actionId = Ember.$(evt.currentTarget).attr('data-ember-action'),
-            action   = Ember.Handlebars.ActionHelper.registeredActions[actionId],
-            handler  = action.handler;
+            action   = Ember.Handlebars.ActionHelper.registeredActions[actionId];
 
-        if (action.eventName === eventName) {
-          return handler(evt);
+        if (action && action.eventName === eventName) {
+          return action.handler(evt);
         }
       }, this);
     });
