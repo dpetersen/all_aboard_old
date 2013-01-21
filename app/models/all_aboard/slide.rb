@@ -1,6 +1,7 @@
 class AllAboard::Slide
   include ActiveModel::Serialization
   include AllAboard::RoutableTo
+  include AllAboard::Persistence::SlidePersistence
 
   attr_reader :id, :layout_name, :position, :panes
 

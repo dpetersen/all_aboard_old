@@ -1,12 +1,12 @@
 {{view templateName="all_aboard/templates/navbar"}}
 
-{{outlet slides}}
+{{outlet}}
 
 {{#if slides.length}}
-  <ol>
+  <ol id="slides">
     {{#each slides}}
       <li>
-        Slide ID:{{id}}
+        Slide ID:{{id}}, layout: {{layoutName}}
 
         <ul>
           {{#each panes}}

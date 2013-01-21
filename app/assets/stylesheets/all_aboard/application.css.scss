@@ -28,3 +28,16 @@
 #new-board {
   @include span-columns(3);
 }
+
+.navbar {
+  @include row;
+}
+
+#slides {
+  @include row;
+}
+
+#manage-slides {
+  @include span-columns(4);
+  float: right;
+}

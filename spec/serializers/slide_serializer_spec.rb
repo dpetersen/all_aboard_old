@@ -5,11 +5,6 @@ describe AllAboard::SlideSerializer do
   let(:hash) { AllAboard::SlideSerializer.new(slide).as_json[:slide] }
   subject { hash }
 
-  describe "markup" do
-    subject { hash[:markup] }
-    it { should be_present }
-  end
-
   describe "associated panes" do
     subject { hash[:panes] }
 

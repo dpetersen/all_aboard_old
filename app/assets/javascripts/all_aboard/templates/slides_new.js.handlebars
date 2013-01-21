@@ -1,0 +1,6 @@
+<form id="new-slide" class="form-inline">
+  <legend>Add Slide</legend>
+
+  {{view Ember.TextField valueBinding="layoutName" id="layoutName" placeholder="Layout Name" required="true" class="input-medium"}}
+  <button {{action createSlide target="controller"}} type="submit" class="btn">Add</button>
+</form>

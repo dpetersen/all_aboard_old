@@ -37,7 +37,14 @@ App.BoardsNewRoute = Em.Route.extend
   setupController: (controller) ->
     controller.initializeNewBoard()
 
-App.SlidesRoute = Em.Route.extend
+App.BoardSubroute = Em.Route.extend
+  parentBoard: ->
+    @controllerFor("board").get("content")
+
+App.SlidesRoute = App.BoardSubroute.extend
   setupController: (controller) ->
-    board = @controllerFor("board").get("content")
-    controller.set("content", board.slides)
+    controller.set("content", @parentBoard().get("slides"))
+
+App.SlidesNewRoute = App.BoardSubroute.extend
+  setupController: (controller) ->
+    controller.initializeNewSlideFor(@parentBoard())

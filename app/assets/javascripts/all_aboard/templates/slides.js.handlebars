@@ -1,0 +1,9 @@
+<div id="manage-slides" class="well">
+  {{outlet}}
+
+  <ol>
+    {{#each slide in content}}
+      <li>I am a slide: {{slide.id}} - {{slide.layoutName}}</li>
+    {{/each}}
+  </ol>
+</div>
