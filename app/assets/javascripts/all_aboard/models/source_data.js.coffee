@@ -1,8 +1,3 @@
-DS.RESTAdapter.map("App.SourceData",
-  dataObject:
-    key: "data_object"
-)
-
 App.SourceData = DS.Model.extend
   dataObject: DS.attr("readOnlyObject")
 

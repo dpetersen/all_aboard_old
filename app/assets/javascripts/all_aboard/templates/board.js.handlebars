@@ -1,11 +1,21 @@
 {{view templateName="all_aboard/templates/navbar"}}
 
-{{#each slides}}
-  {{{markup}}}
+{{outlet slides}}
 
-  <ul>
-    {{#each panes}}
-      {{{markup}}}
+{{#if slides.length}}
+  <ol>
+    {{#each slides}}
+      <li>
+        Slide ID:{{id}}
+
+        <ul>
+          {{#each panes}}
+            {{{markup}}}
+          {{/each}}
+        </ul>
+      </li>
     {{/each}}
-  </ul>
-{{/each}}
+  </ol>
+{{else}}
+  <h3>You need to add some slides if you want to see something here.</h3>
+{{/if}}

@@ -1,9 +1,4 @@
-DS.RESTAdapter.map("App.Board",
-  latestTimestamp:
-    key: "latest_timestamp"
-)
-
 App.Board = DS.Model.extend
-  slides: DS.hasMany('App.Slide', embedded: true)
+  slides: DS.hasMany("App.Slide")
   name: DS.attr("string")
   latestTimestamp: DS.attr("number")

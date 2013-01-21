@@ -11,7 +11,9 @@
           <a href="#"><i class="icon-wrench" title="Edit Slide"></i></a>
         </li>
         <li>
-          <a href="#"><i class="icon-plus" title="Add Slide"></i></a>
+          {{#linkTo "slides.new"}}
+            <i class="icon-plus" title="Add Slide"></i>
+          {{/linkTo}}
         </li>
       </ul>
     </div>

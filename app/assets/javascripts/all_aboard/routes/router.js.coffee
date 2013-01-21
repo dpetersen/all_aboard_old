@@ -6,9 +6,15 @@ App.Router.reopen
 
 App.Router.map (match) ->
   @route("home", path: "/all_aboard/")
-  @resource("board", path: "/all_aboard/board/:board_id")
+
   @resource("boards", path: "/all_aboard/boards", ->
     @route("new")
+  )
+
+  @resource("board", path: "/all_aboard/board/:board_id", ->
+    @resource("slides", ->
+      @route("new")
+    )
   )
 
 App.HomeRoute = Em.Route.extend
@@ -30,3 +36,8 @@ App.BoardsRoute = Em.Route.extend
 App.BoardsNewRoute = Em.Route.extend
   setupController: (controller) ->
     controller.initializeNewBoard()
+
+App.SlidesRoute = Em.Route.extend
+  setupController: (controller) ->
+    board = @controllerFor("board").get("content")
+    controller.set("content", board.slides)
