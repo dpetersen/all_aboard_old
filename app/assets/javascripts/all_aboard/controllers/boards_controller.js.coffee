@@ -1,6 +1,6 @@
 App.BoardsController = Ember.ArrayController.extend
   sortProperties: [ 'name' ]
 
-  persistedBoards: ( ->
+  persistedBoards: Ember.computed ->
     @get("arrangedContent").filterProperty("isNew", false)
-  ).property("arrangedContent.@each").cacheable()
+  .property("arrangedContent.@each").cacheable()
