@@ -48,3 +48,6 @@ App.SlidesRoute = App.BoardSubroute.extend
 App.SlidesNewRoute = App.BoardSubroute.extend
   setupController: (controller) ->
     controller.initializeNewSlideFor(@parentBoard())
+
+App.SlidesController = Ember.ArrayController.extend()
+App.SlideController = Ember.ObjectController.extend()
