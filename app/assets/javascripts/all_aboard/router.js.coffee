@@ -3,9 +3,7 @@ App.Router.reopen
   rootURL: App.baseRoute
 
 App.Router.map (match) ->
-  @resource("boards", ->
-    @route("new")
-  )
+  @resource("boards")
 
   @resource("board", path: "/board/:board_id", ->
     @resource("slides", ->
@@ -15,7 +13,7 @@ App.Router.map (match) ->
 
 App.IndexRoute = Em.Route.extend
   redirect: ->
-    @transitionTo("boards.new")
+    @transitionTo("boards")
 
 App.BoardRoute = Em.Route.extend
   setupController: (controller, board) ->
@@ -28,10 +26,7 @@ App.BoardRoute = Em.Route.extend
 App.BoardsRoute = Em.Route.extend
   setupController: (controller) ->
     controller.set("content", App.Board.find())
-
-App.BoardsNewRoute = Em.Route.extend
-  setupController: (controller) ->
-    controller.initializeNewBoard()
+    @controllerFor("boards.new").initializeNewBoard()
 
 App.BoardSubroute = Em.Route.extend
   parentBoard: ->
