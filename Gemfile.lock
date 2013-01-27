@@ -1,8 +1,17 @@
+GIT
+  remote: git://github.com/engageis/activerecord-postgres-hstore.git
+  revision: f92b012ea1a7149388c24fd52740e6d091706e66
+  specs:
+    activerecord-postgres-hstore (0.5.3)
+      rails
+      rake
+
 PATH
   remote: .
   specs:
     all_aboard (0.0.1)
       active_model_serializers
+      activerecord-postgres-hstore
       coffee-rails
       ember-rails
       haml
@@ -231,6 +240,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-postgres-hstore!
   all_aboard!
   capybara
   database_cleaner

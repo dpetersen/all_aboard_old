@@ -4,23 +4,30 @@ module AllAboard
 
     module ClassMethods
       attr_accessor :configurable_attributes
-    end
 
-    def configuration
-      self.class.configurable_attributes.inject({}) do |h, attribute|
-        h[attribute] = configured_attribute_for(attribute).try(:value)
-        h
+      def configuration
+        has_configuration? ? stored_configuration : blank_configuration
       end
-    end
 
-  protected
+    protected
 
-    def configured_attributes
-      SourceConfiguredAttribute.where(source_name: self.class.name)
-    end
+      def configuration_scope
+        AllAboard::Persistence::SourceConfigurationMetadata.where(source_name: self.name)
+      end
 
-    def configured_attribute_for(attribute)
-      configured_attributes.where(name: attribute).first
+      def has_configuration?
+        configuration_scope.exists?
+      end
+
+      def stored_configuration
+        configuration_scope.first.configuration
+      end
+
+      def blank_configuration
+        self.configurable_attributes.each_with_object({}) do |attribute, h|
+          h[attribute] = nil
+        end
+      end
     end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120923195303) do
+ActiveRecord::Schema.define(:version => 20130127173242) do
 
   create_table "all_aboard_boards", :force => true do |t|
     t.string   "name"
@@ -44,6 +44,13 @@ ActiveRecord::Schema.define(:version => 20120923195303) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "layout_name"
+  end
+
+  create_table "all_aboard_source_configurations", :force => true do |t|
+    t.string   "source_name"
+    t.hstore   "configuration"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
 end

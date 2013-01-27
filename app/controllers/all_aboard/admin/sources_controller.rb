@@ -10,18 +10,7 @@ module AllAboard
     end
 
     def update
-      params[:configurable_attributes].each do |attribute_name, attribute_value|
-        if configured_attribute = SourceConfiguredAttribute.where(source_name: @source.name, name: attribute_name).first
-          configured_attribute.update_attributes(value: attribute_value)
-        else
-          SourceConfiguredAttribute.create!(
-            source_name: @source.name,
-            name: attribute_name,
-            value: attribute_value
-          )
-        end
-      end
-
+      source_configuration.first_or_initialize.update_attributes!(configuration: params[:configurable_attributes])
       render :edit
     end
 
@@ -29,6 +18,10 @@ module AllAboard
 
     def set_source
       @source = SourceManager.instance.source_for_name(params[:id])
+    end
+
+    def source_configuration
+      AllAboard::Persistence::SourceConfigurationMetadata.where(source_name: @source.name)
     end
   end
 end

@@ -22,21 +22,20 @@ describe BasicTestSource do
   end
 
   describe "configuration" do
-    subject { BasicTestSource.new.configuration }
+    subject { BasicTestSource.configuration }
 
     context "when there are no saved ConfiguredAttributes" do
       it { should eq({ a_source_value: nil, a_second_source_value: nil }) }
     end
 
-    context "when a SourceConfiguredAttributes exists" do
+    context "when a SourceConfigurationMetadata exists" do
       before do
-        AllAboard::SourceConfiguredAttribute.create!(
+        AllAboard::Persistence::SourceConfigurationMetadata.create!(
           source_name: "BasicTestSource",
-          name: "a_second_source_value",
-          value: "Some Saved Value"
+          configuration: { a_source_value: nil, a_second_source_value: "Some Saved Value" }
         )
       end
-      it { should eq({ a_source_value: nil, a_second_source_value: "Some Saved Value" }) }
+      it { should eq("a_source_value" => nil, "a_second_source_value" => "Some Saved Value") }
     end
   end
 
