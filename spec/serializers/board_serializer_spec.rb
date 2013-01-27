@@ -38,30 +38,8 @@ describe AllAboard::BoardSerializer do
         it { should_not be_empty }
 
         it "includes the slide" do
-          expect(board_hash[:slides]).to eq([ slide.id ])
+          expect(board_hash[:slides].first[:layout_name]).to eq("Quarters")
         end
-      end
-    end
-  end
-
-  describe "sideloaded slides" do
-    let(:slides_hash) { hash[:slides] }
-    subject { slides_hash }
-
-    context "when not present" do
-      let(:board) { AllAboard::Board.new }
-      it { should be_empty }
-    end
-
-    context "when present" do
-      let(:slide) { AllAboard::Slide.new(layout_name: "Quarters") }
-      let(:board) { AllAboard::Board.new(slides: [ slide ]) }
-
-      its(:length) { should eq(1) }
-
-      describe "the sideloaded slide" do
-        subject { slides_hash.first }
-        its([:layout_name]) { should eq("Quarters") }
       end
     end
   end
