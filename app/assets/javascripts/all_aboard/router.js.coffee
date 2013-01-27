@@ -6,9 +6,7 @@ App.Router.map (match) ->
   @resource("boards")
 
   @resource("board", path: "/board/:board_id", ->
-    @resource("slides", ->
-      @route("new")
-    )
+    @resource("slides")
   )
 
 App.IndexRoute = Em.Route.extend
@@ -28,17 +26,12 @@ App.BoardsRoute = Em.Route.extend
     controller.set("content", App.Board.find())
     @controllerFor("boards.new").initializeNewBoard()
 
-App.BoardSubroute = Em.Route.extend
-  parentBoard: ->
-    @controllerFor("board").get("content")
-
-App.SlidesRoute = App.BoardSubroute.extend
+App.SlidesRoute = Em.Route.extend
   setupController: (controller) ->
-    controller.set("content", @parentBoard().get("slides"))
+    parentBoard = @controllerFor("board").get("content")
 
-App.SlidesNewRoute = App.BoardSubroute.extend
-  setupController: (controller) ->
-    controller.initializeNewSlideFor(@parentBoard())
+    controller.set("content", parentBoard.get("slides"))
+    @controllerFor("slides.new").initializeNewSlideFor(parentBoard)
 
 App.SlidesController = Ember.ArrayController.extend()
 App.SlideController = Ember.ObjectController.extend()
