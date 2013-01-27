@@ -119,7 +119,8 @@ CREATE TABLE all_aboard_perspective_assignments (
     perspective_name character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    "position" integer
+    "position" integer,
+    configuration hstore
 );
 
 
@@ -319,3 +320,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120923195303');
 INSERT INTO schema_migrations (version) VALUES ('20130127172219');
 
 INSERT INTO schema_migrations (version) VALUES ('20130127173242');
+
+INSERT INTO schema_migrations (version) VALUES ('20130127191313');

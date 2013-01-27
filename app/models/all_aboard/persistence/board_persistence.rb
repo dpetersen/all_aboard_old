@@ -37,15 +37,9 @@ module AllAboard::Persistence::BoardPersistence
         attributes = HashWithIndifferentAccess.new(perspective_assignment_metadata.attributes)
         attributes[:source] = AllAboard::SourceManager.instance.source_for_name(attributes[:source_name])
         attributes[:perspective] = attributes[:source].perspective_for_name(attributes[:perspective_name])
-        attributes[:configuration] = hash_for_perspective_assignment_configured_attributes(perspective_assignment_metadata)
+        attributes[:configuration] = perspective_assignment_metadata.configuration
         a << AllAboard::Pane.new(attributes)
         a
-      end
-    end
-
-    def hash_for_perspective_assignment_configured_attributes(perspective_assignment_metadata)
-      perspective_assignment_metadata.perspective_assignment_configured_attributes.each_with_object({}) do |attribute, h|
-        h[attribute.name] = attribute.value
       end
     end
   end

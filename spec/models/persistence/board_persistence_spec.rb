@@ -60,14 +60,8 @@ describe AllAboard::Persistence::BoardPersistence do
               slide_metadata.perspective_assignments.create!(
                 source_name: "BasicTestSource",
                 perspective_name: "A Test Perspective",
-                position: 2
-              )
-            end
-            before do
-              AllAboard::PerspectiveAssignmentConfiguredAttribute.create!(
-                perspective_assignment_id: perspective_assignment_metadata.id,
-                name: "test name",
-		value: "test value"
+                position: 2,
+                configuration: { "test name" => "test value" }
               )
             end
 
