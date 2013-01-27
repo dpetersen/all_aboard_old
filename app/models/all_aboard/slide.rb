@@ -11,13 +11,4 @@ class AllAboard::Slide
     @position = attributes[:position]
     @panes = attributes[:panes] || []
   end
-
-  def markup
-    layout = AllAboard::LayoutManager.instance.layout_for_name(layout_name)
-
-    # TODO: Seems like this logic should be in the LayoutManager.
-    if layout.present? then layout.new.render
-    else"Unknown Layout Name '#{layout_name}'"
-    end
-  end
 end

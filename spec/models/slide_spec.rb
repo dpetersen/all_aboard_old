@@ -22,18 +22,4 @@ describe AllAboard::Slide do
       its(:panes) { should eq([ "pane" ]) }
     end
   end
-
-  describe "#markup" do
-    subject { Capybara.string(slide.markup) }
-
-    context "with a valid layout_name" do
-      let(:slide) { AllAboard::Slide.new(layout_name: "Quarters") }
-      it { should have_selector(".pane-1") }
-    end
-
-    context "with an unknown layout_name" do
-      let(:slide) { AllAboard::Slide.new(layout_name: "Bad") }
-      it { should have_content("Unknown Layout Name 'Bad'") }
-    end
-  end
 end

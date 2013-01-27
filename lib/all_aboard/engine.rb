@@ -14,9 +14,5 @@ module AllAboard
 
       config.handlebars.templates_root = "all_aboard/templates"
     end
-
-    initializer "require and register layouts" do
-      require File.join(Engine.root, "app", "layouts", "all_aboard", "quarters", "quarters")
-    end
   end
 end
