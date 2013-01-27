@@ -4,7 +4,7 @@ App.BoardController = Ember.ObjectController.extend
 
   requestUpdate: ->
     if @get("isLoaded")
-      App.SourceData.getUpdatesFor(@content)
+      App.SourceData.getUpdatesFor(@get("model"))
       @setUpdateTimer()
 
   clearUpdateTimer: ->

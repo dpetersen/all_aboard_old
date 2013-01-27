@@ -14,23 +14,24 @@ App.IndexRoute = Em.Route.extend
     @transitionTo("boards")
 
 App.BoardRoute = Em.Route.extend
-  setupController: (controller, board) ->
-    controller.set("content", board)
   enter: ->
     @controllerFor("board").setUpdateTimer()
+
   exit: ->
     @controllerFor("board").clearUpdateTimer()
 
 App.BoardsRoute = Em.Route.extend
+  model: ->
+    App.Board.find()
+
   setupController: (controller) ->
-    controller.set("content", App.Board.find())
     @controllerFor("boards.new").initializeNewBoard()
 
 App.SlidesRoute = Em.Route.extend
   setupController: (controller) ->
-    parentBoard = @controllerFor("board").get("content")
+    parentBoard = @controllerFor("board").get("model")
 
-    controller.set("content", parentBoard.get("slides"))
+    controller.set("model", parentBoard.get("slides"))
     @controllerFor("slides.new").initializeNewSlideFor(parentBoard)
 
 App.SlidesController = Ember.ArrayController.extend()
