@@ -9,6 +9,7 @@ PATH
       inherited_resources
       jquery-rails
       neat
+      pg
       rails (~> 3.2)
       redis
       redis-namespace
@@ -129,6 +130,7 @@ GEM
       bourbon (>= 2.1)
       sass (>= 3.2)
     nokogiri (1.5.6)
+    pg (0.14.1)
     poltergeist (1.0.2)
       capybara (~> 1.1)
       childprocess (~> 0.3)
