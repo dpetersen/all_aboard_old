@@ -1,23 +1,19 @@
 App.Router.reopen
   location: 'history'
-  # TODO: This should be dynamic, based on where the engine is actually mounted.
-  # Should be able to use this in place of the "/all_aboard" calls below.
-  # rootURL: '/all_aboard'
+  rootURL: App.baseRoute
 
 App.Router.map (match) ->
-  @route("home", path: "/all_aboard/")
-
-  @resource("boards", path: "/all_aboard/boards", ->
+  @resource("boards", ->
     @route("new")
   )
 
-  @resource("board", path: "/all_aboard/board/:board_id", ->
+  @resource("board", path: "/board/:board_id", ->
     @resource("slides", ->
       @route("new")
     )
   )
 
-App.HomeRoute = Em.Route.extend
+App.IndexRoute = Em.Route.extend
   redirect: ->
     @transitionTo("boards.new")
 

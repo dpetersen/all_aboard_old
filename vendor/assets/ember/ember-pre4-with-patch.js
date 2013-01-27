@@ -23858,7 +23858,14 @@ Ember.HistoryLocation = Ember.Object.extend({
     @method getURL
   */
   getURL: function() {
-    return get(this, 'location').pathname;
+    // PATCH: https://github.com/emberjs/ember.js/pull/1836/files
+    var rootURL = get(this, 'rootURL'),
+        url = get(this, 'location').pathname;
+
+    rootURL = rootURL.replace(/\/$/, '');
+    url = url.replace(rootURL, '');
+
+    return url;
   },
 
   /**
@@ -23941,13 +23948,15 @@ Ember.HistoryLocation = Ember.Object.extend({
     @param callback {Function}
   */
   onUpdateURL: function(callback) {
-    var guid = Ember.guidFor(this);
+    // PATCH: https://github.com/emberjs/ember.js/pull/1836/files
+    var guid = Ember.guidFor(this),
+        self = this;
 
     Ember.$(window).bind('popstate.ember-location-'+guid, function(e) {
       if(!popstateReady) {
         return;
       }
-      callback(location.pathname);
+      callback(self.getURL());
     });
   },
 
