@@ -74,41 +74,6 @@ ALTER SEQUENCE all_aboard_boards_id_seq OWNED BY all_aboard_boards.id;
 
 
 --
--- Name: all_aboard_configured_attributes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE all_aboard_configured_attributes (
-    id integer NOT NULL,
-    source_name character varying(255),
-    name character varying(255),
-    value character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    type character varying(255),
-    perspective_assignment_id integer
-);
-
-
---
--- Name: all_aboard_configured_attributes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE all_aboard_configured_attributes_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: all_aboard_configured_attributes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE all_aboard_configured_attributes_id_seq OWNED BY all_aboard_configured_attributes.id;
-
-
---
 -- Name: all_aboard_perspective_assignments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -228,13 +193,6 @@ ALTER TABLE ONLY all_aboard_boards ALTER COLUMN id SET DEFAULT nextval('all_aboa
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY all_aboard_configured_attributes ALTER COLUMN id SET DEFAULT nextval('all_aboard_configured_attributes_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY all_aboard_perspective_assignments ALTER COLUMN id SET DEFAULT nextval('all_aboard_perspective_assignments_id_seq'::regclass);
 
 
@@ -258,14 +216,6 @@ ALTER TABLE ONLY all_aboard_source_configuration_metadata ALTER COLUMN id SET DE
 
 ALTER TABLE ONLY all_aboard_boards
     ADD CONSTRAINT all_aboard_boards_pkey PRIMARY KEY (id);
-
-
---
--- Name: all_aboard_configured_attributes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY all_aboard_configured_attributes
-    ADD CONSTRAINT all_aboard_configured_attributes_pkey PRIMARY KEY (id);
 
 
 --
@@ -322,3 +272,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130127172219');
 INSERT INTO schema_migrations (version) VALUES ('20130127173242');
 
 INSERT INTO schema_migrations (version) VALUES ('20130127191313');
+
+INSERT INTO schema_migrations (version) VALUES ('20130127193945');
