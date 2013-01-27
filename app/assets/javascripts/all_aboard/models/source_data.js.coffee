@@ -3,6 +3,7 @@ App.SourceData = DS.Model.extend
 
 App.SourceData.reopenClass
   getUpdatesFor: (board) ->
+    # Can you use the adapter load thing that is mentioned in breaking changes?
     $.getJSON(
       App.updateRoute,
       since: board.get("latestTimestamp"),

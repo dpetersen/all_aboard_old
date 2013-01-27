@@ -4,16 +4,8 @@
 
 {{#if slides.length}}
   <ol id="slides">
-    {{#each slides}}
-      <li>
-        Slide ID:{{id}}, layout: {{layoutName}}
-
-        <ul>
-          {{#each panes}}
-            {{{markup}}}
-          {{/each}}
-        </ul>
-      </li>
+    {{#each slide in slides}}
+      {{view App.PresentSlideView contentBinding="slide"}}
     {{/each}}
   </ol>
 {{else}}
