@@ -19,4 +19,13 @@ module AllAboard
   def self.redis=(redis)
     @redis = redis
   end
+
+  def self.source_templates
+    @source_templates ||= []
+    @source_templates
+  end
+
+  def self.add_source_template(path, filesystem_path)
+    source_templates << [ path, filesystem_path ]
+  end
 end

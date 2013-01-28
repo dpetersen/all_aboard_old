@@ -1,4 +1,4 @@
-DS.RESTAdapter.registerTransform("readOnlyObject"
+DS.RESTAdapter.registerTransform("readOnlyObject",
   serialize: (value) ->
     value
 
