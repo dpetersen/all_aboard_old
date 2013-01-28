@@ -48,6 +48,7 @@ protected
       @source_base_paths.detect do |path|
         File.exists?(File.join(path, source.filesystem_name))
       end
+    return if base_path.blank?
 
     template_path = File.join(base_path, source.filesystem_name, "templates")
 
