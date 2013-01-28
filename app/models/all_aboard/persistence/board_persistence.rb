@@ -36,7 +36,7 @@ module AllAboard::Persistence::BoardPersistence
       slide_metadata.perspective_assignments.inject([]) do |a, perspective_assignment_metadata|
         attributes = HashWithIndifferentAccess.new(perspective_assignment_metadata.attributes)
         attributes[:source] = AllAboard::SourceManager.instance.source_for_name(attributes[:source_name])
-        attributes[:perspective] = attributes[:source].perspective_for_name(attributes[:perspective_name])
+        attributes[:perspective] = attributes[:perspective_name]
         attributes[:configuration] = perspective_assignment_metadata.configuration
         a << AllAboard::Pane.new(attributes)
         a

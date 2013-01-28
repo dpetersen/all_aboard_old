@@ -76,7 +76,7 @@ describe AllAboard::Persistence::BoardPersistence do
 
               its(:position) { should eq(2) }
               its(:source) { should eq(BasicTestSource) }
-              its(:perspective) { should eq(BasicTestSource.perspective_for_name("A Test Perspective")) }
+              its(:perspective) { should eq("A Test Perspective") }
 
 	      describe "the associated configuration" do
                 subject { pane.configuration }
