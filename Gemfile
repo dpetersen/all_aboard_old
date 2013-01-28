@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 
 # So this gem...  I have no idea. Says in the README that in Rails 3.1+ you should use this serializer that is only available in master.  Why they don't add that to the released gem is a mystery.  They have been regularly releasing.  Really don't feel like trying Rails master right now.
-gem 'activerecord-postgres-hstore', github: 'engageis/activerecord-postgres-hstore'
+gem 'activerecord-postgres-hstore', github: 'engageis/activerecord-postgres-hstore', ref: "f92b012ea1a7149388c24fd52740e6d091706e66"
 
 # Declare your gem's dependencies in all_aboard.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
