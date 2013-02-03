@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = AllAboard::VERSION
   s.authors     = ["Don Petersen"]
   s.email       = ["don@donpetersen.net"]
-  s.homepage    = "donpetersen.net"
+  s.homepage    = "http://www.donpetersen.net"
   s.summary     = "A modular status board as a Rails Engine"
   s.description = "A modular status board as a Rails Engine."
 
