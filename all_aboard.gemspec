@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sidekiq'
   s.add_dependency 'redis'
   s.add_dependency 'redis-namespace'
-  s.add_dependency 'ember-rails'
+  s.add_dependency 'ember-rails', ">= 0.9.2"
   s.add_dependency 'active_model_serializers'
   s.add_dependency 'pg'
   s.add_dependency 'activerecord-postgres-hstore'
