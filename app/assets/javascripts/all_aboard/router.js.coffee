@@ -14,10 +14,10 @@ App.IndexRoute = Em.Route.extend
     @transitionTo("boards")
 
 App.BoardRoute = Em.Route.extend
-  enter: ->
+  activate: ->
     @controllerFor("board").setUpdateTimer()
 
-  exit: ->
+  deactivate: ->
     @controllerFor("board").clearUpdateTimer()
 
 App.BoardsRoute = Em.Route.extend
