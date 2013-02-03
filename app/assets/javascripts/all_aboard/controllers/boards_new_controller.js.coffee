@@ -1,4 +1,6 @@
 App.BoardsNewController = Ember.ObjectController.extend
+  needs: [ "board" ]
+
   initializeNewBoard: ->
     if !@transaction
       @transaction = App.store.transaction()
@@ -12,4 +14,4 @@ App.BoardsNewController = Ember.ObjectController.extend
   showRecord: ->
     newRecord = @get("model")
     newRecord.removeObserver("id", this, "showRecord")
-    @controllerFor("board").transitionTo("board", newRecord)
+    @get("controllers.board").transitionTo("board", newRecord)
