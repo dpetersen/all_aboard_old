@@ -32,13 +32,13 @@ describe AllAboard::BoardSerializer do
       end
 
       context "when present" do
-        let(:slide) { AllAboard::Slide.new(layout_name: "Quarters") }
+        let(:slide) { AllAboard::Slide.new(layout_name: "quarters") }
         let(:board) { AllAboard::Board.new(slides: [ slide ]) }
 
         it { should_not be_empty }
 
         it "includes the slide" do
-          expect(board_hash[:slides].first[:layout_name]).to eq("Quarters")
+          expect(board_hash[:slides].first[:layout_id]).to eq("quarters")
         end
       end
     end

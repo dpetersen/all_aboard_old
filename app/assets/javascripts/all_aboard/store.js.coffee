@@ -6,12 +6,16 @@ DS.RESTAdapter.registerTransform("readOnlyObject",
     value
 )
 
-App.Adapter = DS.RESTAdapter.extend()
-App.Adapter.map("App.Board", slides: { embedded: "always" })
-App.Adapter.map("App.Slide", panes: { embedded: "always" })
-App.Adapter.map("App.Pane", sourceData: { embedded: "always" })
+App.ServerAdapter = DS.RESTAdapter.extend()
+App.ServerAdapter.map("App.Board", slides: { embedded: "always" })
+App.ServerAdapter.map("App.Slide", panes: { embedded: "always" })
+App.ServerAdapter.map("App.Pane", sourceData: { embedded: "always" })
 
-App.store = DS.Store.create
+App.Store = DS.Store.extend
   revision: 11
-  adapter: App.Adapter.create
+  adapter: App.ServerAdapter.create
     namespace: App.storeRoute
+
+App.Store.registerAdapter("App.Layout", DS.FixtureAdapter.extend())
+
+App.store = App.Store.create()
