@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "A modular status board as a Rails Engine"
   s.description = "A modular status board as a Rails Engine."
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile"]
   s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails", "~> 3.2"
