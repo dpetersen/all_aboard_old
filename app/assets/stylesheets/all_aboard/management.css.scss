@@ -1,0 +1,16 @@
+@import "bourbon";
+@import "neat";
+
+#new-board {
+  @include span-columns(3);
+}
+
+#manage-slides {
+  @include span-columns(4);
+  float: right;
+}
+
+.panes > li.unassigned {
+  border-color: #000000;
+  background-color: #ffffff;
+}

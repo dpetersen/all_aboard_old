@@ -1,0 +1,13 @@
+@import "bourbon";
+@import "neat";
+
+.quarters {
+  @include row;
+  background-color: #00cc00;
+
+  .panes > li {
+    @include span-columns(5);
+    border: 2px solid #00ff00;
+    margin-bottom: 20px;
+  }
+}

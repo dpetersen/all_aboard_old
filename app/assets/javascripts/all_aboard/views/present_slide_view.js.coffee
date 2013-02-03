@@ -1,5 +1,3 @@
 App.PresentSlideView = Em.View.extend
-  templateName: "present/slide"
-  layoutName: Ember.computed ->
-    "layouts/" + @get("content.layout.id")
-  .property("content.layout.id")
+  templateName: "present_slide"
+  layoutName: "slide_layout"

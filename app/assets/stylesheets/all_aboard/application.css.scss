@@ -10,7 +10,14 @@
  *
  *= require bootstrap
  *= require_self
+ *= require ./board
+ *= require ./quarters
+ *= require ./two_up
+ *= require ./management
 */
+
+@import "bourbon";
+@import "neat";
 
 // Override bootstrap's icon sprite path so I don't have to remember to tweak
 // it every time I want to update bootstrap
@@ -18,26 +25,6 @@
   background-image: url("../glyphicons-halflings.png")
 }
 
-@import "bourbon";
-@import "neat";
-
 #all-aboard {
   @include outer-container;
-}
-
-#new-board {
-  @include span-columns(3);
-}
-
-.navbar {
-  @include row;
-}
-
-#slides {
-  @include row;
-}
-
-#manage-slides {
-  @include span-columns(4);
-  float: right;
 }

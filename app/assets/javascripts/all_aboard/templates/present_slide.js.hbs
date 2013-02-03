@@ -1,0 +1,13 @@
+<ol class="panes">
+  {{#each possiblePanes}}
+    {{#if pane}}
+      <li>
+        {{#with pane}}
+          {{view contextBinding="sourceData.dataObject" templateNameBinding="compiledTemplatePath"}}
+        {{/with}}
+      </li>
+    {{else}}
+      <li class="unassigned">Nothing assigned.</li>
+    {{/if}}
+  {{/each}}
+</ol>

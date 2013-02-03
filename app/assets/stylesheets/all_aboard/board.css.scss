@@ -1,0 +1,15 @@
+@import "bourbon";
+@import "neat";
+
+.navbar {
+  @include row;
+}
+
+#slides {
+  @include row;
+}
+
+#slides, .panes {
+  margin-left: 0;
+  list-style: none;
+}
