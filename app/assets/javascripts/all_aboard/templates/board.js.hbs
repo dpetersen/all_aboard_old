@@ -4,9 +4,7 @@
 
 {{#if slides.length}}
   <ol id="slides">
-    {{#each slide in slides}}
-      {{view App.PresentSlideView contentBinding="slide"}}
-    {{/each}}
+    {{each slides itemViewClass="App.PresentSlideView"}}
   </ol>
 {{else}}
   <h3>You need to add some slides if you want to see something here.</h3>

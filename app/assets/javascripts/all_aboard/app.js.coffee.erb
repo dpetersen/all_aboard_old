@@ -5,10 +5,8 @@
 #= require_tree ./views
 #= require_tree ./helpers
 #= require_tree ./templates
-
-App.AllAboardTemplates = []
 <% AllAboard.source_templates.each do |(path, filesystem_path)| %>
-App.AllAboardTemplates["<%= path %>"] = "<%= File.read(filesystem_path).gsub('"', '\"') %>"
+    <% require_asset filesystem_path %>
 <% end %>
 
 App.initialize()
