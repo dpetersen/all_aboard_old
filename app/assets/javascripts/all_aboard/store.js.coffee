@@ -7,9 +7,9 @@ DS.RESTAdapter.registerTransform("readOnlyObject",
 )
 
 App.ServerAdapter = DS.RESTAdapter.extend()
-App.ServerAdapter.map("App.Board", slides: { embedded: "always" })
-App.ServerAdapter.map("App.Slide", panes: { embedded: "always" })
-App.ServerAdapter.map("App.Pane", sourceData: { embedded: "always" })
+App.ServerAdapter.map("App.Board", slides: { embedded: "load" })
+App.ServerAdapter.map("App.Slide", panes: { embedded: "load" })
+App.ServerAdapter.map("App.Pane", sourceData: { embedded: "load" })
 
 App.Store = DS.Store.extend
   revision: 11

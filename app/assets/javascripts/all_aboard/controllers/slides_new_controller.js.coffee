@@ -4,14 +4,14 @@ App.SlidesNewController = Ember.ObjectController.extend
       @transaction = App.store.transaction()
       slide = @transaction.createRecord(App.Slide)
       slide.set("board", board)
-      @set("content", slide)
+      @set("model", slide)
 
   createSlide: ->
     @transaction.commit()
     @transaction = null
-    @get("content").addObserver("id", this, "showRecord")
+    @get("model").addObserver("id", this, "showRecord")
 
   showRecord: ->
-    newRecord = @get("content")
+    newRecord = @get("model")
     newRecord.removeObserver("id", this, "showRecord")
     @initializeNewSlideFor(newRecord.get("board"))

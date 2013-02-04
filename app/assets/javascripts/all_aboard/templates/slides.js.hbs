@@ -3,7 +3,7 @@
 
   <ol>
     {{#each slide in content}}
-      <li>I am a slide: {{slide.id}} - {{slide.layoutName}}</li>
+      <li>I am a slide: {{slide.id}} - {{slide.layout.name}}</li>
       <ul>
         {{#each pane in slide.panes}}
           <li>id: {{ pane.id }} - {{ pane.position }}</li>
