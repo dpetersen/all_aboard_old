@@ -253,24 +253,24 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 -- PostgreSQL database dump complete
 --
 
-INSERT INTO schema_migrations (version) VALUES ('20120331175851');
+INSERT INTO schema_migrations (version) VALUES ('20130217184407');
 
-INSERT INTO schema_migrations (version) VALUES ('20120331191342');
+INSERT INTO schema_migrations (version) VALUES ('20130217184408');
 
-INSERT INTO schema_migrations (version) VALUES ('20120331210638');
+INSERT INTO schema_migrations (version) VALUES ('20130217184409');
 
-INSERT INTO schema_migrations (version) VALUES ('20120331221005');
+INSERT INTO schema_migrations (version) VALUES ('20130217184410');
 
-INSERT INTO schema_migrations (version) VALUES ('20120401174620');
+INSERT INTO schema_migrations (version) VALUES ('20130217184411');
 
-INSERT INTO schema_migrations (version) VALUES ('20120401222233');
+INSERT INTO schema_migrations (version) VALUES ('20130217184412');
 
-INSERT INTO schema_migrations (version) VALUES ('20120923195303');
+INSERT INTO schema_migrations (version) VALUES ('20130217184413');
 
-INSERT INTO schema_migrations (version) VALUES ('20130127172219');
+INSERT INTO schema_migrations (version) VALUES ('20130217184414');
 
-INSERT INTO schema_migrations (version) VALUES ('20130127173242');
+INSERT INTO schema_migrations (version) VALUES ('20130217184415');
 
-INSERT INTO schema_migrations (version) VALUES ('20130127191313');
+INSERT INTO schema_migrations (version) VALUES ('20130217184416');
 
-INSERT INTO schema_migrations (version) VALUES ('20130127193945');
+INSERT INTO schema_migrations (version) VALUES ('20130217184417');

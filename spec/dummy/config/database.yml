@@ -7,7 +7,7 @@ development:
   adapter: postgresql
   database: all_aboard_dummy_development
   pool: 5
-  username: postgres
+  username: vagrant
   password: password
 
 # Warning: The database defined as "test" will be erased and
@@ -17,12 +17,12 @@ test:
   adapter: postgresql
   database: all_aboard_dummy_test
   pool: 5
-  username: postgres
+  username: vagrant
   password: password
 
 production:
   adapter: postgresql
   database: all_aboard_dummy_production
   pool: 5
-  username: postgres
+  username: vagrant
   password: password
