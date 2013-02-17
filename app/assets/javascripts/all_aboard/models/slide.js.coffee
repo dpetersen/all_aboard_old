@@ -3,6 +3,9 @@ App.Slide = DS.Model.extend
   layout: DS.belongsTo("App.Layout")
   panes: DS.hasMany("App.Pane")
 
+  # There won't be database records for unassigned panes, but we do want to
+  # render a placeholder so that interface looks right.  There has to be a
+  # better solution.
   possiblePanes: Em.computed ->
     return [] unless @get("layout.paneCount")
 
