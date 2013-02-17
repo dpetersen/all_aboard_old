@@ -14,4 +14,4 @@ App.BoardsNewController = Ember.ObjectController.extend
   showRecord: ->
     newRecord = @get("model")
     newRecord.removeObserver("id", this, "showRecord")
-    @get("controllers.board").transitionTo("board", newRecord)
+    @get("controllers.board").transitionToRoute("board", newRecord)
